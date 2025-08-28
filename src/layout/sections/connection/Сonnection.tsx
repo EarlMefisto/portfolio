@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { LeaveMessage } from "./leaveMessage/LeaveMessage";
-import { WorksContacts } from "./worksContacts/WorksContacts";
-import { Container } from "../../../components/Container";
-import { FlexWrapper } from "../../../components/FlexWrapper";
+import { ContactsAndLocation } from "./ContactsAndLocation/ContactsAndLocation";
+import { Container } from "../../../shared/components/Container";
+import { FlexWrapper } from "../../../shared/components/FlexWrapper";
 
 export const Connection = () => {
   return (
     <StyledConnection>
       <Container>
-        <FlexWrapper justify={"center"} gap={"30px"}>
+        <FlexWrapper gap={"10px"}>
           <LeaveMessage />
-          <WorksContacts />
+          <ContactsAndLocation />
         </FlexWrapper>
       </Container>
     </StyledConnection>

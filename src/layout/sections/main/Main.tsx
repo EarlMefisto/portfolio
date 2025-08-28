@@ -1,30 +1,34 @@
 import styled from "styled-components";
-import { FlexWrapper } from "../../../components/FlexWrapper";
-import { Container } from "../../../components/Container";
-import { Button } from "../../../components/Button";
 import { thems } from "../../../styles/Thems";
-
-import photo from "../../../assets/img/photo_2024-10-28_22-37-35.webp";
-
+import photo from "../../../assets/img/IMG_5490.png";
+import { Container } from "../../../shared/components/Container";
+import { FlexWrapper } from "../../../shared/components/FlexWrapper";
+import { Button } from "../../../shared/components/Button";
 
 export const Main = () => {
   return (
     <GlobalStyledMain>
       <Container>
-        <FlexWrapper justify={"space-around"} align={"center"} wrap={"wrap"}>
+        <FlexWrapper>
           <StyledMain>
             <StyledTitles>
-              <StyledMainTitleH2>
-                I’m <span>Iryna Lebedeva</span>
-              </StyledMainTitleH2>
               <StyledMainTitleH1>
-                And I <span>Front-end</span> Developer
+                I’m <span>Iryna Lebedeva</span>
               </StyledMainTitleH1>
             </StyledTitles>
             <StyledMainText>
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enim velit mollit. lorem
-              ipsum
+              I'm a <strong>Frontend Developer</strong> passionate about
+              crafting <strong>clean, efficient code</strong> and{" "}
+              <strong>intuitive user experiences</strong>. With 6+ months of
+              experience, I build SPAs using{" "}
+              <strong>
+                TypeScript, React, Redux, RTK Query, HTML and SCSS
+              </strong>{" "}
+              and I'm currently expanding my toolkit with{" "}
+              <strong>Next.js</strong>. <br />I believe in writing{" "}
+              <strong>maintainable and scalable solutions</strong> and actively
+              follow industry updates to apply market-leading practices. I am
+              also continuously improving my English language skills.
             </StyledMainText>
             <ButtonWrapper>
               <Button>More about me</Button>
@@ -39,15 +43,15 @@ export const Main = () => {
   );
 };
 
-const GlobalStyledMain = styled.div`
-  margin-bottom: 100px;
-
-  @media ${thems.media.tablet} {
-    margin-bottom: 87px;
-  }
-`;
+const GlobalStyledMain = styled.section``;
 
 const StyledMain = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  gap: 25px;
   background-color: ${thems.colors.secondaryBg};
 `;
 
@@ -62,20 +66,7 @@ const StyledTitles = styled.div`
   }
 `;
 
-const StyledMainTitleH2 = styled.h2`
-  margin: 93px 0 0 60px;
-
-  line-height: 124%;
-
-  @media ${thems.media.tablet} {
-    margin: 100px 0 0 20px;
-  }
-`;
-
 const StyledMainTitleH1 = styled.h1`
-  max-width: 500px;
-  margin: 0 0 0 60px;
-
   line-height: 124%;
 
   @media ${thems.media.tablet} {
@@ -86,17 +77,17 @@ const StyledMainTitleH1 = styled.h1`
 const StyledMainText = styled.p`
   display: block;
   max-width: 435px;
-  margin: 18px 0 0 60px;
-
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 15px;
   line-height: 150%;
-  text-transform: capitalize;
+
+  strong {
+    color: ${thems.colors.title};
+  }
 
   @media ${thems.media.mobile} {
     max-width: 281px;
-    margin: 90px 0 0 32px;
 
     font-size: 16px;
   }
@@ -110,7 +101,7 @@ const PhotoWrapper = styled.div`
 
   &::before {
     content: "";
-    width: 340px;
+    width: 325px;
     height: 485px;
     border: 4px solid ${thems.colors.title};
 
@@ -120,9 +111,6 @@ const PhotoWrapper = styled.div`
     z-index: -1;
 
     @media ${thems.media.tablet} {
-      width: 0;
-      height: 0;
-
       border: none;
     }
   }
@@ -132,19 +120,10 @@ const Photo = styled.img`
   width: 325px;
   height: 450px;
   object-fit: cover;
-
-  @media ${thems.media.mobile} {
-    width: 325px;
-    height: 450px;
-  }
 `;
 
 const ButtonWrapper = styled.div`
-  margin: 25px 0 74px 60px;
-
   @media ${thems.media.mobile} {
-    margin: 35px 0 50px 35px;
-
     button {
       height: 50px;
     }

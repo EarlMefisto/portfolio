@@ -1,36 +1,22 @@
 import styled from "styled-components";
-import { FlexWrapper } from "../../components/FlexWrapper";
-import { Icon } from "../../components/Icon";
-import { Container } from "../../components/Container";
-import { thems } from "../../styles/Thems";
+import { FlexWrapper } from "../../shared/components/FlexWrapper";
+import { Icon } from "../../shared/components/Icon";
 
 export const Footer = () => {
   return (
-    <StyledFooter>
-      <Container>
-        <FlexWrapper justify={"center"}>
-          <IconWrapper>
-            <Icon
-              iconId={"copyright"}
-              width={"24px"}
-              height={"24px"}
-              viewBox={"0 0 24px 24px"}
-            />
-          </IconWrapper>
-          <Copyright>2025 All Rights Reserved by Irina Lebedeva</Copyright>
-        </FlexWrapper>
-      </Container>
-    </StyledFooter>
+    <FlexWrapper>
+      <IconWrapper>
+        <Icon
+          iconId={"copyright"}
+          width={"24px"}
+          height={"24px"}
+          viewBox={"0 0 24px 24px"}
+        />
+      </IconWrapper>
+      <Copyright>2025 All Rights Reserved by Irina Lebedeva</Copyright>
+    </FlexWrapper>
   );
 };
-
-const StyledFooter = styled.footer`
-  background-color: ${thems.colors.secondaryBg};
-
-  @media ${thems.media.mobile} {
-    background-color: ${thems.colors.secondaryBg};
-  }
-`;
 
 const IconWrapper = styled.div`
   margin: 18px 15px 0;

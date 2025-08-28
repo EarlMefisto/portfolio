@@ -1,15 +1,12 @@
 import styled from "styled-components";
-import { Container } from "../../../components/Container";
-import { FlexWrapper } from "../../../components/FlexWrapper";
-import { SectionTitle } from "../../../components/SectionTitile";
-import { SectionText } from "../../../components/SectionText";
 import { MyWorksPost } from "./myWorksPost/MyWorksPost";
 import { TabMenu } from "./tabMenu/TabMenu";
-import { thems } from "../../../styles/Thems";
-
 import postImage1 from "../../../assets/img/0cbd17e4381497547009ce81acc4eee3.webp";
 import postImage2 from "../../../assets/img/Alcohol_use-main.webp";
 import postImage3 from "../../../assets/img/photo_2024-11-27_16-55-32.webp";
+import { Container } from "../../../shared/components/Container";
+import { SectionTitle } from "../../../shared/components/SectionTitile";
+import { FlexWrapper } from "../../../shared/components/FlexWrapper";
 
 const WorksItems = ["All", "Layout", "App", "Project"];
 
@@ -18,14 +15,10 @@ export const MyWorks = () => {
     <StyledMyWorks>
       <Container>
         <SectionTitle>My Works</SectionTitle>
-        <SectionText>
-          Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-          sint. Velit officia consequat duis enim velit mollit. lorem ipsum
-        </SectionText>
-        <FlexWrapper justify={"center"}>
+        <FlexWrapper>
           <TabMenu menuItems={WorksItems} />
         </FlexWrapper>
-        <FlexWrapper wrap={"wrap"} justify={"space-between"} gap={"20px"}>
+        <FlexWrapper wrap={"wrap"}>
           <MyWorksList>
             <MyWorksItem>
               <MyWorksLink href={"https://earlmefisto.github.io/desert/"}>
@@ -52,15 +45,8 @@ export const MyWorks = () => {
   );
 };
 
-const StyledMyWorks = styled.section`
-  @media ${thems.media.laptop} {
-    padding: 0 20px;
+const StyledMyWorks = styled.section``;
 
-    ${FlexWrapper} {
-      justify-content: center;
-    }
-  }
-`;
 const MyWorksList = styled.ul``;
 
 const MyWorksItem = styled.li``;

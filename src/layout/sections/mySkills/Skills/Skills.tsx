@@ -1,28 +1,51 @@
 import styled from "styled-components";
-import { Icon } from "../../../../components/Icon";
-import { FlexWrapper } from "../../../../components/FlexWrapper";
 import { thems } from "../../../../styles/Thems";
+import { FlexWrapper } from "../../../../shared/components/FlexWrapper";
+import { Icon } from "../../../../shared/components/Icon";
 
 type ServicePropsType = {
   iconId?: string;
   title?: string;
-  description?: string;
   width?: string;
   height?: string;
   viewBox?: string;
   fill?: string;
 };
 
+// const skills = [
+//   "Java Script",
+//   "TypeScript",
+//   "HTML",
+//   "CRA",
+//   "Vite",
+//   "Yarn",
+//   "pnpm",
+//   "Next.js",
+//   "React",
+//   "Redux",
+//   "RTK Query",
+//   "CSS",
+//   "CSS Modules",
+//   "Styled Components",
+//   "MUI",
+//   "Radix UI",
+//   "Storybook",
+//   "Git/GitHub",
+//   "Axios",
+//   "Prettier",
+//   "Zod"
+// ];
+
 export const Skills = (props: ServicePropsType) => {
   return (
     <StyledSkills>
-      <FlexWrapper direction={"column"} align={"center"}>
+      <FlexWrapper direction={"column"}>
         <IconWrapper>
           <Icon
             iconId={props.iconId || "none"}
             width={props.width || "80px"}
             height={props.height || "80px"}
-            viewBox={props.viewBox || "0 0 24 24"}
+            viewBox={props.viewBox || "0 0 50 50"}
           />
         </IconWrapper>
         <StyledSkillsTitile>{props.title}</StyledSkillsTitile>

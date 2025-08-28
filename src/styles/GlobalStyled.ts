@@ -5,8 +5,8 @@ export const GlobalStyled = createGlobalStyle`
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
+    margin: 0 auto;
+    padding: 0 auto;
     
 }
 
@@ -20,7 +20,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  color: ${thems.colors.text}
+  color: ${thems.colors.text};
+  background-color: ${thems.colors.primaryBg};
 }
 
 a {
@@ -35,6 +36,8 @@ a:hover {
 
 ul {
     list-style: none;
+    
+    padding: 0;
 }
 
 button {
@@ -48,15 +51,6 @@ button {
 }
 
 section {
-    padding: 35px 0;
+    margin: 10px;
 }
-
-section:nth-of-type(odd) {
-    background-color: ${thems.colors.primaryBg};
-}
-
-section:nth-of-type(even) {
-    background-color: ${thems.colors.primaryBg};
-}
-
 `;

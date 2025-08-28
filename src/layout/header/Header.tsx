@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { DayMode } from "./dayMode/DayMode";
-import { FlexWrapper } from "../../components/FlexWrapper";
 import { HeaderMenu } from "./headerMenu/HeaderMenu";
 import { thems } from "../../styles/Thems";
 import { MobileMenu } from "./MobileMenu/MobileMenu";
+import { FlexWrapper } from "../../shared/components/FlexWrapper";
 
 export const Header = () => {
   return (
     <StyledHeader>
-      <FlexWrapper direction={"column"} align={"center"} gap={"74px"}>
+      <FlexWrapper direction={"column"}>
         <DayMode />
         <HeaderMenu />
         <MobileMenu />

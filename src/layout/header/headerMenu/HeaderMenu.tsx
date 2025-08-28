@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Icon } from "../../../components/Icon";
 import { thems } from "../../../styles/Thems";
+import { Icon } from "../../../shared/components/Icon";
 
 export const HeaderMenu = () => {
   return (

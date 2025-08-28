@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { thems } from "../../../styles/Thems";
-import { Icon } from "../../../components/Icon";
+import { Icon } from "../../../shared/components/Icon";
 
 export const MobileMenu = () => {
   return (
