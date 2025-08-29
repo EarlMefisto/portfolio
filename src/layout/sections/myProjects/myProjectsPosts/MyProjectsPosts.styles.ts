@@ -1,26 +1,12 @@
-import styled from "styled-components";
-import { thems } from "../../../../styles/Thems";
-import { Button } from "../../../../shared/components/Button";
+import styled from 'styled-components'
+import { thems } from '../../../../styles/Thems'
+import { Button } from '../../../../shared/components/Button'
 
-type PostPropsType = {
-  src: string;
-  href?: string;
-};
-
-export const MyWorksPost = (props: PostPropsType) => {
-  return (
-    <PostWrapper>
-      <PostImage src={props.src} alt="" />
-      <Button>push me</Button>
-    </PostWrapper>
-  );
-};
-
-const PostWrapper = styled.div`
+export const PostsWrapper = styled.div`
   position: relative;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     right: 0;
@@ -65,9 +51,9 @@ const PostWrapper = styled.div`
       }
     }
   }
-`;
+`
 
-const PostImage = styled.img`
+export const PostsImage = styled.img`
   max-width: 310px;
   min-height: 310px;
   object-fit: cover;
@@ -76,4 +62,4 @@ const PostImage = styled.img`
     width: 100%;
     object-fit: cover;
   }
-`;
+`

@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import { thems } from "./Thems";
+import { createGlobalStyle } from 'styled-components'
+import { thems } from './Thems'
 
 export const GlobalStyled = createGlobalStyle`
 *,
@@ -53,4 +53,4 @@ button {
 section {
     margin: 10px;
 }
-`;
+`

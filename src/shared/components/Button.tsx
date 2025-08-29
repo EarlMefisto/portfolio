@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Button = styled.button`
   display: flex;
@@ -9,7 +9,7 @@ export const Button = styled.button`
   height: 35px;
   border-radius: 2px;
 
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 14px;
   text-transform: uppercase;
@@ -18,4 +18,4 @@ export const Button = styled.button`
   &:hover {
     transform: scale(1.1);
   }
-`;
+`

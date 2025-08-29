@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { thems } from "../../styles/Thems";
+import styled from 'styled-components'
+import { thems } from '../../styles/Thems'
 
 export const Container = styled.div`
   max-width: 970px;
@@ -9,4 +9,4 @@ export const Container = styled.div`
     max-width: 345px;
     margin: 30px auto;
   }
-`;
+`

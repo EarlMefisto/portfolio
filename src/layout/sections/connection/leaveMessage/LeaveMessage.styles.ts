@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { thems } from "../../../../styles/Thems";
+import styled from 'styled-components'
+import { thems } from '../../../../styles/Thems'
 
-export const Section = styled.div``;
+export const Section = styled.div``
 
 export const Form = styled.form`
   display: flex;
@@ -30,7 +30,7 @@ export const Form = styled.form`
       height: 110px;
     }
   }
-`;
+`
 
 export const Field = styled.input`
   width: 350px;
@@ -39,7 +39,7 @@ export const Field = styled.input`
 
   color: white;
   background-color: ${thems.colors.primaryBg};
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 15px;
   line-height: 160%;
@@ -56,7 +56,7 @@ export const Field = styled.input`
     width: 250px;
     padding: 5px;
   }
-`;
+`
 
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -64,7 +64,6 @@ export const ButtonWrapper = styled.div`
 
   margin-top: 20px;
 
-  
   @media ${thems.media.mobile} {
     flex-direction: column;
     gap: 10px;
@@ -77,4 +76,4 @@ export const ButtonWrapper = styled.div`
 
     margin: 10px 0;
   }
-`;
+`

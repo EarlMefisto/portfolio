@@ -1,8 +1,7 @@
-import { Icon } from "../../../../shared/components/Icon";
-import { SectionTitle } from "../../../../shared/components/SectionTitile";
-import { MAP_URL, SOCIAL_LINKS } from "../../../../shared/constants/contacts";
-import { Item, Link, List, Map, Section } from "./ContactsAndLocation.style";
-
+import { Icon } from '../../../../shared/components/Icon'
+import { SectionTitle } from '../../../../shared/components/SectionTitile'
+import { MAP_URL, SOCIAL_LINKS } from '../../../../shared/constants/contacts'
+import { Item, Link, List, Map, Section } from './ContactsAndLocation.style'
 
 export const ContactsAndLocation = () => {
   return (
@@ -12,12 +11,7 @@ export const ContactsAndLocation = () => {
         {SOCIAL_LINKS.map(({ href, iconId }) => (
           <Item key={iconId}>
             <Link href={href} target="_blank" rel="noopener noreferrer">
-              <Icon
-                iconId={iconId}
-                viewBox="0 0 70 60"
-                width="60"
-                height="70"
-              />
+              <Icon iconId={iconId} viewBox="0 0 70 60" width="60" height="70" />
             </Link>
           </Item>
         ))}
@@ -25,13 +19,8 @@ export const ContactsAndLocation = () => {
 
       <SectionTitle>My Location</SectionTitle>
       <Map>
-        <iframe
-          src={MAP_URL}
-          width={"100%"}
-          height={"300px"}
-          loading="lazy"
-        ></iframe>
+        <iframe src={MAP_URL} width={'100%'} height={'300px'} loading="lazy"></iframe>
       </Map>
     </Section>
-  );
-};
+  )
+}
