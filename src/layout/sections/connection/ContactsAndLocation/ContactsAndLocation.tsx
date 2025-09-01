@@ -11,7 +11,7 @@ export const ContactsAndLocation = () => {
         {SOCIAL_LINKS.map(({ href, iconId }) => (
           <Item key={iconId}>
             <Link href={href} target="_blank" rel="noopener noreferrer">
-              <Icon iconId={iconId} viewBox="0 0 70 60" width="60" height="70" />
+              <Icon iconId={iconId} viewBox={'0 0 70 60'} width={'60'} height={'70'} />
             </Link>
           </Item>
         ))}

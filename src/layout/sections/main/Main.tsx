@@ -25,7 +25,7 @@ export const Main = () => {
               </Title>
             </StyledTitle>
             <Text>
-              I'm a <strong>Frontend Developer</strong> passionate about crafting{' '}
+              <strong>Frontend Developer</strong> passionate about crafting{' '}
               <strong>clean, efficient code</strong> and <strong>intuitive user experiences</strong>
               . With 6+ months of experience, I build SPAs using{' '}
               <strong>TypeScript, React, Redux, RTK Query, HTML and SCSS</strong> and I'm currently

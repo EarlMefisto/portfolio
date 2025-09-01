@@ -12,6 +12,8 @@ export const StyledHeader = styled.header`
   z-index: 99999;
 
   @media ${thems.media.smallDisplay} {
-    display: none;
+    position: fixed;
+    top: 0;
+    right: 50px;
   }
 `
