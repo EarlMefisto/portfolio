@@ -60,30 +60,11 @@ section {
  * LICENSE.md file in the root directory of this source tree.
  *
  * @license MIT
- */;var gn="popstate";function yn(e={}){return function(e,t,n,r={}){let{window:a=document.defaultView,v5Compat:l=!1}=r,o=a.history,i="POP",u=null,s=c();null==s&&(s=0,o.replaceState({...o.state,idx:s},""));function c(){return(o.state||{idx:null}).idx}function f(){i="POP";let e=c(),t=null==e?null:e-s;s=e,u&&u({action:i,location:m.location,delta:t})}function d(e,t){i="PUSH";let n=kn(m.location,e,t);s=c()+1;let r=wn(n,s),f=m.createHref(n);try{o.pushState(r,"",f)}catch(d){if(d instanceof DOMException&&"DataCloneError"===d.name)throw d;a.location.assign(f)}l&&u&&u({action:i,location:m.location,delta:1})}function p(e,t){i="REPLACE";let n=kn(m.location,e,t);s=c();let r=wn(n,s),a=m.createHref(n);o.replaceState(r,"",a),l&&u&&u({action:i,location:m.location,delta:0})}function h(e){return function(e,t=!1){let n="http://localhost";"undefined"!=typeof window&&(n="null"!==window.location.origin?window.location.origin:window.location.href);vn(n,"No window.location.(origin|href) available to create URL");let r="string"==typeof e?e:Sn(e);r=r.replace(/ $/,"%20"),!t&&r.startsWith("//")&&(r=n+r);return new URL(r,n)}(e)}let m={get action(){return i},get location(){return e(a,o)},listen(e){if(u)throw new Error("A history only accepts one active listener");return a.addEventListener(gn,f),u=e,()=>{a.removeEventListener(gn,f),u=null}},createHref:e=>t(a,e),createURL:h,encodeLocation(e){let t=h(e);return{pathname:t.pathname,search:t.search,hash:t.hash}},push:d,replace:p,go:e=>o.go(e)};return m}(function(e,t){let{pathname:n,search:r,hash:a}=e.location;return kn("",{pathname:n,search:r,hash:a},t.state&&t.state.usr||null,t.state&&t.state.key||"default")},function(e,t){return"string"==typeof t?t:Sn(t)},0,e)}function vn(e,t){if(!1===e||null==e)throw new Error(t)}function bn(e,t){if(!e){"undefined"!=typeof console&&console.warn(t);try{throw new Error(t)}catch(n){}}}function wn(e,t){return{usr:e.state,key:e.key,idx:t}}function kn(e,t,n=null,r){return{pathname:"string"==typeof e?e:e.pathname,search:"",hash:"",..."string"==typeof t?xn(t):t,state:n,key:t&&t.key||r||Math.random().toString(36).substring(2,10)}}function Sn({pathname:e="/",search:t="",hash:n=""}){return t&&"?"!==t&&(e+="?"===t.charAt(0)?t:"?"+t),n&&"#"!==n&&(e+="#"===n.charAt(0)?n:"#"+n),e}function xn(e){let t={};if(e){let n=e.indexOf("#");n>=0&&(t.hash=e.substring(n),e=e.substring(0,n));let r=e.indexOf("?");r>=0&&(t.search=e.substring(r),e=e.substring(0,r)),e&&(t.pathname=e)}return t}function En(e,t,n="/"){return function(e,t,n,r){let a="string"==typeof t?xn(t):t,l=$n(a.pathname||"/",n);if(null==l)return null;let o=Cn(e);!function(e){e.sort((e,t)=>e.score!==t.score?t.score-e.score:function(e,t){let n=e.length===t.length&&e.slice(0,-1).every((e,n)=>e===t[n]);return n?e[e.length-1]-t[t.length-1]:0}(e.routesMeta.map(e=>e.childrenIndex),t.routesMeta.map(e=>e.childrenIndex)))}(o);let i=null;for(let u=0;null==i&&u<o.length;++u){let e=Dn(l);i=An(o[u],e,r)}return i}(e,t,n,!1)}function Cn(e,t=[],n=[],r=""){let a=(e,a,l)=>{let o={relativePath:void 0===l?e.path||"":l,caseSensitive:!0===e.caseSensitive,childrenIndex:a,route:e};o.relativePath.startsWith("/")&&(vn(o.relativePath.startsWith(r),`Absolute route path "${o.relativePath}" nested under path "${r}" is not valid. An absolute child route path must start with the combined path of all its parent routes.`),o.relativePath=o.relativePath.slice(r.length));let i=Bn([r,o.relativePath]),u=n.concat(o);e.children&&e.children.length>0&&(vn(!0!==e.index,`Index routes must not have child routes. Please remove all child routes from route path "${i}".`),Cn(e.children,t,u,i)),(null!=e.path||e.index)&&t.push({path:i,score:On(i,e.index),routesMeta:u})};return e.forEach((e,t)=>{if(""!==e.path&&e.path?.includes("?"))for(let n of Pn(e.path))a(e,t,n);else a(e,t)}),t}function Pn(e){let t=e.split("/");if(0===t.length)return[];let[n,...r]=t,a=n.endsWith("?"),l=n.replace(/\?$/,"");if(0===r.length)return a?[l,""]:[l];let o=Pn(r.join("/")),i=[];return i.push(...o.map(e=>""===e?l:[l,e].join("/"))),a&&i.push(...o),i.map(t=>e.startsWith("/")&&""===t?"/":t)}var _n=/^:[\w-]+$/,Nn=3,zn=2,Tn=1,Ln=10,Rn=-2,jn=e=>"*"===e;function On(e,t){let n=e.split("/"),r=n.length;return n.some(jn)&&(r+=Rn),t&&(r+=zn),n.filter(e=>!jn(e)).reduce((e,t)=>e+(_n.test(t)?Nn:""===t?Tn:Ln),r)}function An(e,t,n=!1){let{routesMeta:r}=e,a={},l="/",o=[];for(let i=0;i<r.length;++i){let e=r[i],u=i===r.length-1,s="/"===l?t:t.slice(l.length)||"/",c=In({path:e.relativePath,caseSensitive:e.caseSensitive,end:u},s),f=e.route;if(!c&&u&&n&&!r[r.length-1].route.index&&(c=In({path:e.relativePath,caseSensitive:e.caseSensitive,end:!1},s)),!c)return null;Object.assign(a,c.params),o.push({params:a,pathname:Bn([l,c.pathname]),pathnameBase:Hn(Bn([l,c.pathnameBase])),route:f}),"/"!==c.pathnameBase&&(l=Bn([l,c.pathnameBase]))}return o}function In(e,t){"string"==typeof e&&(e={path:e,caseSensitive:!1,end:!0});let[n,r]=function(e,t=!1,n=!0){bn("*"===e||!e.endsWith("*")||e.endsWith("/*"),`Route path "${e}" will be treated as if it were "${e.replace(/\*$/,"/*")}" because the \`*\` character must always follow a \`/\` in the pattern. To get rid of this warning, please change the route path to "${e.replace(/\*$/,"/*")}".`);let r=[],a="^"+e.replace(/\/*\*?$/,"").replace(/^\/*/,"/").replace(/[\\.*+^${}|()[\]]/g,"\\$&").replace(/\/:([\w-]+)(\?)?/g,(e,t,n)=>(r.push({paramName:t,isOptional:null!=n}),n?"/?([^\\/]+)?":"/([^\\/]+)"));e.endsWith("*")?(r.push({paramName:"*"}),a+="*"===e||"/*"===e?"(.*)$":"(?:\\/(.+)|\\/*)$"):n?a+="\\/*$":""!==e&&"/"!==e&&(a+="(?:(?=\\/|$))");let l=new RegExp(a,t?void 0:"i");return[l,r]}(e.path,e.caseSensitive,e.end),a=t.match(n);if(!a)return null;let l=a[0],o=l.replace(/(.)\/+$/,"$1"),i=a.slice(1);return{params:r.reduce((e,{paramName:t,isOptional:n},r)=>{if("*"===t){let e=i[r]||"";o=l.slice(0,l.length-e.length).replace(/(.)\/+$/,"$1")}const a=i[r];return e[t]=n&&!a?void 0:(a||"").replace(/%2F/g,"/"),e},{}),pathname:l,pathnameBase:o,pattern:e}}function Dn(e){try{return e.split("/").map(e=>decodeURIComponent(e).replace(/\//g,"%2F")).join("/")}catch(t){return bn(!1,`The URL path "${e}" could not be decoded because it is a malformed URL segment. This is probably due to a bad percent encoding (${t}).`),e}}function $n(e,t){if("/"===t)return e;if(!e.toLowerCase().startsWith(t.toLowerCase()))return null;let n=t.endsWith("/")?t.length-1:t.length,r=e.charAt(n);return r&&"/"!==r?null:e.slice(n)||"/"}function Fn(e,t,n,r){return`Cannot include a '${e}' character in a manually specified \`to.${t}\` field [${JSON.stringify(r)}].  Please separate it out to the \`to.${n}\` field. Alternatively you may provide the full path as a string in <Link to="..."> and the router will parse it for you.`}function Mn(e){let t=function(e){return e.filter((e,t)=>0===t||e.route.path&&e.route.path.length>0)}(e);return t.map((e,n)=>n===t.length-1?e.pathname:e.pathnameBase)}function Un(e,t,n,r=!1){let a;"string"==typeof e?a=xn(e):(a={...e},vn(!a.pathname||!a.pathname.includes("?"),Fn("?","pathname","search",a)),vn(!a.pathname||!a.pathname.includes("#"),Fn("#","pathname","hash",a)),vn(!a.search||!a.search.includes("#"),Fn("#","search","hash",a)));let l,o=""===e||""===a.pathname,i=o?"/":a.pathname;if(null==i)l=n;else{let e=t.length-1;if(!r&&i.startsWith("..")){let t=i.split("/");for(;".."===t[0];)t.shift(),e-=1;a.pathname=t.join("/")}l=e>=0?t[e]:"/"}let u=function(e,t="/"){let{pathname:n,search:r="",hash:a=""}="string"==typeof e?xn(e):e,l=n?n.startsWith("/")?n:function(e,t){let n=t.replace(/\/+$/,"").split("/");return e.split("/").forEach(e=>{".."===e?n.length>1&&n.pop():"."!==e&&n.push(e)}),n.length>1?n.join("/"):"/"}(n,t):t;return{pathname:l,search:Wn(r),hash:Vn(a)}}(a,l),s=i&&"/"!==i&&i.endsWith("/"),c=(o||"."===i)&&n.endsWith("/");return u.pathname.endsWith("/")||!s&&!c||(u.pathname+="/"),u}var Bn=e=>e.join("/").replace(/\/\/+/g,"/"),Hn=e=>e.replace(/\/+$/,"").replace(/^\/*/,"/"),Wn=e=>e&&"?"!==e?e.startsWith("?")?e:"?"+e:"",Vn=e=>e&&"#"!==e?e.startsWith("#")?e:"#"+e:"";var qn=["POST","PUT","PATCH","DELETE"];new Set(qn);var Qn=["GET",...qn];new Set(Qn);var Yn=T.createContext(null);Yn.displayName="DataRouter";var Gn=T.createContext(null);Gn.displayName="DataRouterState",T.createContext(!1);var Kn=T.createContext({isTransitioning:!1});Kn.displayName="ViewTransition",T.createContext(new Map).displayName="Fetchers",T.createContext(null).displayName="Await";var Xn=T.createContext(null);Xn.displayName="Navigation";var Jn=T.createContext(null);Jn.displayName="Location";var Zn=T.createContext({outlet:null,matches:[],isDataRoute:!1});Zn.displayName="Route";var er=T.createContext(null);function tr(){return null!=T.useContext(Jn)}function nr(){return vn(tr(),"useLocation() may be used only in the context of a <Router> component."),T.useContext(Jn).location}er.displayName="RouteError";var rr="You should call navigate() in a React.useEffect(), not when your component is first rendered.";function ar(e){T.useContext(Xn).static||T.useLayoutEffect(e)}function lr(){let{isDataRoute:e}=T.useContext(Zn);return e?function(){let{router:e}=function(e){let t=T.useContext(Yn);return vn(t,dr(e)),t}("useNavigate"),t=pr("useNavigate"),n=T.useRef(!1);return ar(()=>{n.current=!0}),T.useCallback(async(r,a={})=>{bn(n.current,rr),n.current&&("number"==typeof r?e.navigate(r):await e.navigate(r,{fromRouteId:t,...a}))},[e,t])}():function(){vn(tr(),"useNavigate() may be used only in the context of a <Router> component.");let e=T.useContext(Yn),{basename:t,navigator:n}=T.useContext(Xn),{matches:r}=T.useContext(Zn),{pathname:a}=nr(),l=JSON.stringify(Mn(r)),o=T.useRef(!1);return ar(()=>{o.current=!0}),T.useCallback((r,i={})=>{if(bn(o.current,rr),!o.current)return;if("number"==typeof r)return void n.go(r);let u=Un(r,JSON.parse(l),a,"path"===i.relative);null==e&&"/"!==t&&(u.pathname="/"===u.pathname?t:Bn([t,u.pathname])),(i.replace?n.replace:n.push)(u,i.state,i)},[t,n,l,a,e])}()}function or(e,{relative:t}={}){let{matches:n}=T.useContext(Zn),{pathname:r}=nr(),a=JSON.stringify(Mn(n));return T.useMemo(()=>Un(e,JSON.parse(a),r,"path"===t),[e,a,r,t])}function ir(e,t,n,r){vn(tr(),"useRoutes() may be used only in the context of a <Router> component.");let a,{navigator:l}=T.useContext(Xn),{matches:o}=T.useContext(Zn),i=o[o.length-1],u=i?i.params:{},s=i?i.pathname:"/",c=i?i.pathnameBase:"/",f=i&&i.route;{let e=f&&f.path||"";mr(s,!f||e.endsWith("*")||e.endsWith("*?"),`You rendered descendant <Routes> (or called \`useRoutes()\`) at "${s}" (under <Route path="${e}">) but the parent route path has no trailing "*". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.\n\nPlease change the parent <Route path="${e}"> to <Route path="${"/"===e?"*":`${e}/*`}">.`)}a=nr();let d=a.pathname||"/",p=d;if("/"!==c){let e=c.replace(/^\//,"").split("/");p="/"+d.replace(/^\//,"").split("/").slice(e.length).join("/")}let h=En(e,{pathname:p});bn(f||null!=h,`No routes matched location "${a.pathname}${a.search}${a.hash}" `),bn(null==h||void 0!==h[h.length-1].route.element||void 0!==h[h.length-1].route.Component||void 0!==h[h.length-1].route.lazy,`Matched leaf route at location "${a.pathname}${a.search}${a.hash}" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.`);let m=function(e,t=[],n=null){if(null==e){if(!n)return null;if(n.errors)e=n.matches;else{if(0!==t.length||n.initialized||!(n.matches.length>0))return null;e=n.matches}}let r=e,a=n?.errors;if(null!=a){let e=r.findIndex(e=>e.route.id&&void 0!==a?.[e.route.id]);vn(e>=0,`Could not find a matching route for errors on route IDs: ${Object.keys(a).join(",")}`),r=r.slice(0,Math.min(r.length,e+1))}let l=!1,o=-1;if(n)for(let i=0;i<r.length;i++){let e=r[i];if((e.route.HydrateFallback||e.route.hydrateFallbackElement)&&(o=i),e.route.id){let{loaderData:t,errors:a}=n,i=e.route.loader&&!t.hasOwnProperty(e.route.id)&&(!a||void 0===a[e.route.id]);if(e.route.lazy||i){l=!0,r=o>=0?r.slice(0,o+1):[r[0]];break}}}return r.reduceRight((e,i,u)=>{let s,c=!1,f=null,d=null;n&&(s=a&&i.route.id?a[i.route.id]:void 0,f=i.route.errorElement||sr,l&&(o<0&&0===u?(mr("route-fallback",!1,"No `HydrateFallback` element provided to render during initial hydration"),c=!0,d=null):o===u&&(c=!0,d=i.route.hydrateFallbackElement||null)));let p=t.concat(r.slice(0,u+1)),h=()=>{let t;return t=s?f:c?d:i.route.Component?T.createElement(i.route.Component,null):i.route.element?i.route.element:e,T.createElement(fr,{match:i,routeContext:{outlet:e,matches:p,isDataRoute:null!=n},children:t})};return n&&(i.route.ErrorBoundary||i.route.errorElement||0===u)?T.createElement(cr,{location:n.location,revalidation:n.revalidation,component:f,error:s,children:h(),routeContext:{outlet:null,matches:p,isDataRoute:!0}}):h()},null)}(h&&h.map(e=>Object.assign({},e,{params:Object.assign({},u,e.params),pathname:Bn([c,l.encodeLocation?l.encodeLocation(e.pathname).pathname:e.pathname]),pathnameBase:"/"===e.pathnameBase?c:Bn([c,l.encodeLocation?l.encodeLocation(e.pathnameBase).pathname:e.pathnameBase])})),o,n,r);return m}function ur(){let e=function(){let e=T.useContext(er),t=function(e){let t=T.useContext(Gn);return vn(t,dr(e)),t}("useRouteError"),n=pr("useRouteError");if(void 0!==e)return e;return t.errors?.[n]}(),t=function(e){return null!=e&&"number"==typeof e.status&&"string"==typeof e.statusText&&"boolean"==typeof e.internal&&"data"in e}(e)?`${e.status} ${e.statusText}`:e instanceof Error?e.message:JSON.stringify(e),n=e instanceof Error?e.stack:null,r="rgba(200,200,200, 0.5)",a={padding:"0.5rem",backgroundColor:r},l={padding:"2px 4px",backgroundColor:r},o=null;return console.error("Error handled by React Router default ErrorBoundary:",e),o=T.createElement(T.Fragment,null,T.createElement("p",null,"💿 Hey developer 👋"),T.createElement("p",null,"You can provide a way better UX than this when your app throws errors by providing your own ",T.createElement("code",{style:l},"ErrorBoundary")," or"," ",T.createElement("code",{style:l},"errorElement")," prop on your route.")),T.createElement(T.Fragment,null,T.createElement("h2",null,"Unexpected Application Error!"),T.createElement("h3",{style:{fontStyle:"italic"}},t),n?T.createElement("pre",{style:a},n):null,o)}T.createContext(null);var sr=T.createElement(ur,null),cr=class extends T.Component{constructor(e){super(e),this.state={location:e.location,revalidation:e.revalidation,error:e.error}}static getDerivedStateFromError(e){return{error:e}}static getDerivedStateFromProps(e,t){return t.location!==e.location||"idle"!==t.revalidation&&"idle"===e.revalidation?{error:e.error,location:e.location,revalidation:e.revalidation}:{error:void 0!==e.error?e.error:t.error,location:t.location,revalidation:e.revalidation||t.revalidation}}componentDidCatch(e,t){console.error("React Router caught the following error during render",e,t)}render(){return void 0!==this.state.error?T.createElement(Zn.Provider,{value:this.props.routeContext},T.createElement(er.Provider,{value:this.state.error,children:this.props.component})):this.props.children}};function fr({routeContext:e,match:t,children:n}){let r=T.useContext(Yn);return r&&r.static&&r.staticContext&&(t.route.errorElement||t.route.ErrorBoundary)&&(r.staticContext._deepestRenderedBoundaryId=t.route.id),T.createElement(Zn.Provider,{value:e},n)}function dr(e){return`${e} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`}function pr(e){let t=function(e){let t=T.useContext(Zn);return vn(t,dr(e)),t}(e),n=t.matches[t.matches.length-1];return vn(n.route.id,`${e} can only be used on routes that contain a unique "id"`),n.route.id}var hr={};function mr(e,t,n){t||hr[e]||(hr[e]=!0,bn(!1,n))}function gr({basename:e="/",children:t=null,location:n,navigationType:r="POP",navigator:a,static:l=!1}){vn(!tr(),"You cannot render a <Router> inside another <Router>. You should never have more than one in your app.");let o=e.replace(/^\/*/,"/"),i=T.useMemo(()=>({basename:o,navigator:a,static:l,future:{}}),[o,a,l]);"string"==typeof n&&(n=xn(n));let{pathname:u="/",search:s="",hash:c="",state:f=null,key:d="default"}=n,p=T.useMemo(()=>{let e=$n(u,o);return null==e?null:{location:{pathname:e,search:s,hash:c,state:f,key:d},navigationType:r}},[o,u,s,c,f,d,r]);return bn(null!=p,`<Router basename="${o}"> is not able to match the URL "${u}${s}${c}" because it does not start with the basename, so the <Router> won't render anything.`),null==p?null:T.createElement(Xn.Provider,{value:i},T.createElement(Jn.Provider,{children:t,value:p}))}T.memo(function({routes:e,future:t,state:n}){return ir(e,0,n,t)});var yr="get",vr="application/x-www-form-urlencoded";function br(e){return null!=e&&"string"==typeof e.tagName}var wr=null;var kr=new Set(["application/x-www-form-urlencoded","multipart/form-data","text/plain"]);function Sr(e){return null==e||kr.has(e)?e:(bn(!1,`"${e}" is not a valid \`encType\` for \`<Form>\`/\`<fetcher.Form>\` and will default to "${vr}"`),null)}function xr(e,t){let n,r,a,l,o;if(br(i=e)&&"form"===i.tagName.toLowerCase()){let o=e.getAttribute("action");r=o?$n(o,t):null,n=e.getAttribute("method")||yr,a=Sr(e.getAttribute("enctype"))||vr,l=new FormData(e)}else if(function(e){return br(e)&&"button"===e.tagName.toLowerCase()}(e)||function(e){return br(e)&&"input"===e.tagName.toLowerCase()}(e)&&("submit"===e.type||"image"===e.type)){let o=e.form;if(null==o)throw new Error('Cannot submit a <button> or <input type="submit"> without a <form>');let i=e.getAttribute("formaction")||o.getAttribute("action");if(r=i?$n(i,t):null,n=e.getAttribute("formmethod")||o.getAttribute("method")||yr,a=Sr(e.getAttribute("formenctype"))||Sr(o.getAttribute("enctype"))||vr,l=new FormData(o,e),!function(){if(null===wr)try{new FormData(document.createElement("form"),0),wr=!1}catch(e){wr=!0}return wr}()){let{name:t,type:n,value:r}=e;if("image"===n){let e=t?`${t}.`:"";l.append(`${e}x`,"0"),l.append(`${e}y`,"0")}else t&&l.append(t,r)}}else{if(br(e))throw new Error('Cannot submit element that is not <form>, <button>, or <input type="submit|image">');n=yr,r=null,a=vr,o=e}var i;return l&&"text/plain"===a&&(o=l,l=void 0),{action:r,method:n.toLowerCase(),encType:a,formData:l,body:o}}function Er(e,t){if(!1===e||null==e)throw new Error(t)}function Cr(e){return null!=e&&(null==e.href?"preload"===e.rel&&"string"==typeof e.imageSrcSet&&"string"==typeof e.imageSizes:"string"==typeof e.rel&&"string"==typeof e.href)}async function Pr(e,t,n){return function(e,t){let n=new Set;return new Set(t),e.reduce((e,t)=>{let r=JSON.stringify(function(e){let t={},n=Object.keys(e).sort();for(let r of n)t[r]=e[r];return t}(t));return n.has(r)||(n.add(r),e.push({key:r,link:t})),e},[])}((await Promise.all(e.map(async e=>{let r=t.routes[e.route.id];if(r){let e=await async function(e,t){if(e.id in t)return t[e.id];try{let n=await import(e.module);return t[e.id]=n,n}catch(n){return console.error(`Error loading route module \`${e.module}\`, reloading page...`),console.error(n),window.__reactRouterContext&&window.__reactRouterContext.isSpaMode,window.location.reload(),new Promise(()=>{})}}(r,n);return e.links?e.links():[]}return[]}))).flat(1).filter(Cr).filter(e=>"stylesheet"===e.rel||"preload"===e.rel).map(e=>"stylesheet"===e.rel?{...e,rel:"prefetch",as:"style"}:{...e,rel:"prefetch"}))}function _r(e,t,n,r,a,l){let o=(e,t)=>!n[t]||e.route.id!==n[t].route.id,i=(e,t)=>n[t].pathname!==e.pathname||n[t].route.path?.endsWith("*")&&n[t].params["*"]!==e.params["*"];return"assets"===l?t.filter((e,t)=>o(e,t)||i(e,t)):"data"===l?t.filter((t,l)=>{let u=r.routes[t.route.id];if(!u||!u.hasLoader)return!1;if(o(t,l)||i(t,l))return!0;if(t.route.shouldRevalidate){let r=t.route.shouldRevalidate({currentUrl:new URL(a.pathname+a.search+a.hash,window.origin),currentParams:n[0]?.params||{},nextUrl:new URL(e,window.origin),nextParams:t.params,defaultShouldRevalidate:!0});if("boolean"==typeof r)return r}return!0}):[]}function Nr(e,t,{includeHydrateFallback:n}={}){return r=e.map(e=>{let r=t.routes[e.route.id];if(!r)return[];let a=[r.module];return r.clientActionModule&&(a=a.concat(r.clientActionModule)),r.clientLoaderModule&&(a=a.concat(r.clientLoaderModule)),n&&r.hydrateFallbackModule&&(a=a.concat(r.hydrateFallbackModule)),r.imports&&(a=a.concat(r.imports)),a}).flat(1),[...new Set(r)];var r}function zr(){let e=T.useContext(Yn);return Er(e,"You must render this element inside a <DataRouterContext.Provider> element"),e}Object.getOwnPropertyNames(Object.prototype).sort().join("\0");var Tr=T.createContext(void 0);function Lr(){let e=T.useContext(Tr);return Er(e,"You must render this element inside a <HydratedRouter> element"),e}function Rr(e,t){return n=>{e&&e(n),n.defaultPrevented||t(n)}}function jr({page:e,...t}){let{router:n}=zr(),r=T.useMemo(()=>En(n.routes,e,n.basename),[n.routes,e,n.basename]);return r?T.createElement(Or,{page:e,matches:r,...t}):null}function Or({page:e,matches:t,...n}){let r=nr(),{manifest:a,routeModules:l}=Lr(),{basename:o}=zr(),{loaderData:i,matches:u}=function(){let e=T.useContext(Gn);return Er(e,"You must render this element inside a <DataRouterStateContext.Provider> element"),e}(),s=T.useMemo(()=>_r(e,t,u,a,r,"data"),[e,t,u,a,r]),c=T.useMemo(()=>_r(e,t,u,a,r,"assets"),[e,t,u,a,r]),f=T.useMemo(()=>{if(e===r.pathname+r.search+r.hash)return[];let n=new Set,u=!1;if(t.forEach(e=>{let t=a.routes[e.route.id];t&&t.hasLoader&&(!s.some(t=>t.route.id===e.route.id)&&e.route.id in i&&l[e.route.id]?.shouldRevalidate||t.hasClientLoader?u=!0:n.add(e.route.id))}),0===n.size)return[];let c=function(e,t,n){let r="string"==typeof e?new URL(e,"undefined"==typeof window?"server://singlefetch/":window.location.origin):e;return"/"===r.pathname?r.pathname=`_root.${n}`:t&&"/"===$n(r.pathname,t)?r.pathname=`${t.replace(/\/$/,"")}/_root.${n}`:r.pathname=`${r.pathname.replace(/\/$/,"")}.${n}`,r}(e,o,"data");return u&&n.size>0&&c.searchParams.set("_routes",t.filter(e=>n.has(e.route.id)).map(e=>e.route.id).join(",")),[c.pathname+c.search]},[o,i,r,a,s,t,e,l]),d=T.useMemo(()=>Nr(c,a),[c,a]),p=function(e){let{manifest:t,routeModules:n}=Lr(),[r,a]=T.useState([]);return T.useEffect(()=>{let r=!1;return Pr(e,t,n).then(e=>{r||a(e)}),()=>{r=!0}},[e,t,n]),r}(c);return T.createElement(T.Fragment,null,f.map(e=>T.createElement("link",{key:e,rel:"prefetch",as:"fetch",href:e,...n})),d.map(e=>T.createElement("link",{key:e,rel:"modulepreload",href:e,...n})),p.map(({key:e,link:t})=>T.createElement("link",{key:e,nonce:n.nonce,...t})))}function Ar(...e){return t=>{e.forEach(e=>{"function"==typeof e?e(t):null!=e&&(e.current=t)})}}Tr.displayName="FrameworkContext";var Ir="undefined"!=typeof window&&void 0!==window.document&&void 0!==window.document.createElement;try{Ir&&(window.__reactRouterVersion="7.8.0")}catch(gl){}function Dr({basename:e,children:t,window:n}){let r=T.useRef();null==r.current&&(r.current=yn({window:n,v5Compat:!0}));let a=r.current,[l,o]=T.useState({action:a.action,location:a.location}),i=T.useCallback(e=>{T.startTransition(()=>o(e))},[o]);return T.useLayoutEffect(()=>a.listen(i),[a,i]),T.createElement(gr,{basename:e,children:t,location:l.location,navigationType:l.action,navigator:a})}var $r=/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i,Fr=T.forwardRef(function({onClick:e,discover:t="render",prefetch:n="none",relative:r,reloadDocument:a,replace:l,state:o,target:i,to:u,preventScrollReset:s,viewTransition:c,...f},d){let p,{basename:h}=T.useContext(Xn),m="string"==typeof u&&$r.test(u),g=!1;if("string"==typeof u&&m&&(p=u,Ir))try{let e=new URL(window.location.href),t=u.startsWith("//")?new URL(e.protocol+u):new URL(u),n=$n(t.pathname,h);t.origin===e.origin&&null!=n?u=n+t.search+t.hash:g=!0}catch(gl){bn(!1,`<Link to="${u}"> contains an invalid URL which will probably break when clicked - please update to a valid URL path.`)}let y=function(e,{relative:t}={}){vn(tr(),"useHref() may be used only in the context of a <Router> component.");let{basename:n,navigator:r}=T.useContext(Xn),{hash:a,pathname:l,search:o}=or(e,{relative:t}),i=l;return"/"!==n&&(i="/"===l?n:Bn([n,l])),r.createHref({pathname:i,search:o,hash:a})}(u,{relative:r}),[v,b,w]=function(e,t){let n=T.useContext(Tr),[r,a]=T.useState(!1),[l,o]=T.useState(!1),{onFocus:i,onBlur:u,onMouseEnter:s,onMouseLeave:c,onTouchStart:f}=t,d=T.useRef(null);T.useEffect(()=>{if("render"===e&&o(!0),"viewport"===e){let e=new IntersectionObserver(e=>{e.forEach(e=>{o(e.isIntersecting)})},{threshold:.5});return d.current&&e.observe(d.current),()=>{e.disconnect()}}},[e]),T.useEffect(()=>{if(r){let e=setTimeout(()=>{o(!0)},100);return()=>{clearTimeout(e)}}},[r]);let p=()=>{a(!0)},h=()=>{a(!1),o(!1)};return n?"intent"!==e?[l,d,{}]:[l,d,{onFocus:Rr(i,p),onBlur:Rr(u,h),onMouseEnter:Rr(s,p),onMouseLeave:Rr(c,h),onTouchStart:Rr(f,p)}]:[!1,d,{}]}(n,f),k=function(e,{target:t,replace:n,state:r,preventScrollReset:a,relative:l,viewTransition:o}={}){let i=lr(),u=nr(),s=or(e,{relative:l});return T.useCallback(c=>{if(function(e,t){return!(0!==e.button||t&&"_self"!==t||function(e){return!!(e.metaKey||e.altKey||e.ctrlKey||e.shiftKey)}(e))}(c,t)){c.preventDefault();let t=void 0!==n?n:Sn(u)===Sn(s);i(e,{replace:t,state:r,preventScrollReset:a,relative:l,viewTransition:o})}},[u,i,s,n,r,t,e,a,l,o])}(u,{replace:l,state:o,target:i,preventScrollReset:s,relative:r,viewTransition:c});let S=T.createElement("a",{...f,...w,href:p||y,onClick:g||a?e:function(t){e&&e(t),t.defaultPrevented||k(t)},ref:Ar(d,b),target:i,"data-discover":m||"render"!==t?void 0:"true"});return v&&!m?T.createElement(T.Fragment,null,S,T.createElement(jr,{page:y})):S});function Mr(e){let t=T.useContext(Yn);return vn(t,function(e){return`${e} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`}(e)),t}Fr.displayName="Link",T.forwardRef(function({"aria-current":e="page",caseSensitive:t=!1,className:n="",end:r=!1,style:a,to:l,viewTransition:o,children:i,...u},s){let c=or(l,{relative:u.relative}),f=nr(),d=T.useContext(Gn),{navigator:p,basename:h}=T.useContext(Xn),m=null!=d&&function(e,{relative:t}={}){let n=T.useContext(Kn);vn(null!=n,"`useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?");let{basename:r}=Mr("useViewTransitionState"),a=or(e,{relative:t});if(!n.isTransitioning)return!1;let l=$n(n.currentLocation.pathname,r)||n.currentLocation.pathname,o=$n(n.nextLocation.pathname,r)||n.nextLocation.pathname;return null!=In(a.pathname,o)||null!=In(a.pathname,l)}(c)&&!0===o,g=p.encodeLocation?p.encodeLocation(c).pathname:c.pathname,y=f.pathname,v=d&&d.navigation&&d.navigation.location?d.navigation.location.pathname:null;t||(y=y.toLowerCase(),v=v?v.toLowerCase():null,g=g.toLowerCase()),v&&h&&(v=$n(v,h)||v);const b="/"!==g&&g.endsWith("/")?g.length-1:g.length;let w,k=y===g||!r&&y.startsWith(g)&&"/"===y.charAt(b),S=null!=v&&(v===g||!r&&v.startsWith(g)&&"/"===v.charAt(g.length)),x={isActive:k,isPending:S,isTransitioning:m},E=k?e:void 0;w="function"==typeof n?n(x):[n,k?"active":null,S?"pending":null,m?"transitioning":null].filter(Boolean).join(" ");let C="function"==typeof a?a(x):a;return T.createElement(Fr,{...u,"aria-current":E,className:w,ref:s,style:C,to:l,viewTransition:o},"function"==typeof i?i(x):i)}).displayName="NavLink",T.forwardRef(({discover:e="render",fetcherKey:t,navigate:n,reloadDocument:r,replace:a,state:l,method:o=yr,action:i,onSubmit:u,relative:s,preventScrollReset:c,viewTransition:f,...d},p)=>{let h=function(){let{router:e}=Mr("useSubmit"),{basename:t}=T.useContext(Xn),n=pr("useRouteId");return T.useCallback(async(r,a={})=>{let{action:l,method:o,encType:i,formData:u,body:s}=xr(r,t);if(!1===a.navigate){let t=a.fetcherKey||Br();await e.fetch(t,n,a.action||l,{preventScrollReset:a.preventScrollReset,formData:u,body:s,formMethod:a.method||o,formEncType:a.encType||i,flushSync:a.flushSync})}else await e.navigate(a.action||l,{preventScrollReset:a.preventScrollReset,formData:u,body:s,formMethod:a.method||o,formEncType:a.encType||i,replace:a.replace,state:a.state,fromRouteId:n,flushSync:a.flushSync,viewTransition:a.viewTransition})},[e,t,n])}(),m=function(e,{relative:t}={}){let{basename:n}=T.useContext(Xn),r=T.useContext(Zn);vn(r,"useFormAction must be used inside a RouteContext");let[a]=r.matches.slice(-1),l={...or(e||".",{relative:t})},o=nr();if(null==e){l.search=o.search;let e=new URLSearchParams(l.search),t=e.getAll("index");if(t.some(e=>""===e)){e.delete("index"),t.filter(e=>e).forEach(t=>e.append("index",t));let n=e.toString();l.search=n?`?${n}`:""}}e&&"."!==e||!a.route.index||(l.search=l.search?l.search.replace(/^\?/,"?index&"):"?index");"/"!==n&&(l.pathname="/"===l.pathname?n:Bn([n,l.pathname]));return Sn(l)}(i,{relative:s}),g="get"===o.toLowerCase()?"get":"post",y="string"==typeof i&&$r.test(i);return T.createElement("form",{ref:p,method:g,action:m,onSubmit:r?u:e=>{if(u&&u(e),e.defaultPrevented)return;e.preventDefault();let r=e.nativeEvent.submitter,i=r?.getAttribute("formmethod")||o;h(r||e.currentTarget,{fetcherKey:t,method:i,navigate:n,replace:a,state:l,relative:s,preventScrollReset:c,viewTransition:f})},...d,"data-discover":y||"render"!==e?void 0:"true"})}).displayName="Form";var Ur=0,Br=()=>`__${String(++Ur)}__`;const Hr=e=>i.jsx("svg",{width:e.width,height:e.height,viewBox:e.viewBox,fill:e.fill||"#FFB400",children:i.jsx("use",{xlinkHref:`/portfolio/assets/icons-sprite-DKKuDHlM.svg#${e.iconId}`})}),Wr=()=>i.jsxs(Vr,{children:[i.jsx(Hr,{iconId:"contrast",width:"30",height:"30",viewBox:"0 0 30 30"}),i.jsx(qr,{})]}),Vr=fn.div`
-  margin-top: 25px;
-
-  cursor: pointer;
-
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-
-  width: 60px;
-  height: 60px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &:hover {
-    background-color: ${pn.accent};
-  }
-`,qr=fn.button``,Qr=()=>i.jsx(Yr,{children:i.jsxs(Gr,{children:[i.jsx(Kr,{children:i.jsx(Xr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"home"})})}),i.jsx(Kr,{children:i.jsx(Xr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"service"})})}),i.jsx(Kr,{children:i.jsx(Xr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"works"})})}),i.jsx(Kr,{children:i.jsx(Xr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"message"})})}),i.jsx(Kr,{children:i.jsx(Xr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"contact"})})}),i.jsx(Kr,{children:i.jsx(Xr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"location"})})})]})}),Yr=fn.nav`
-`,Gr=fn.ul``,Kr=fn.li`
+ */;var gn="popstate";function yn(e={}){return function(e,t,n,r={}){let{window:a=document.defaultView,v5Compat:l=!1}=r,o=a.history,i="POP",u=null,s=c();null==s&&(s=0,o.replaceState({...o.state,idx:s},""));function c(){return(o.state||{idx:null}).idx}function f(){i="POP";let e=c(),t=null==e?null:e-s;s=e,u&&u({action:i,location:m.location,delta:t})}function d(e,t){i="PUSH";let n=kn(m.location,e,t);s=c()+1;let r=wn(n,s),f=m.createHref(n);try{o.pushState(r,"",f)}catch(d){if(d instanceof DOMException&&"DataCloneError"===d.name)throw d;a.location.assign(f)}l&&u&&u({action:i,location:m.location,delta:1})}function p(e,t){i="REPLACE";let n=kn(m.location,e,t);s=c();let r=wn(n,s),a=m.createHref(n);o.replaceState(r,"",a),l&&u&&u({action:i,location:m.location,delta:0})}function h(e){return function(e,t=!1){let n="http://localhost";"undefined"!=typeof window&&(n="null"!==window.location.origin?window.location.origin:window.location.href);vn(n,"No window.location.(origin|href) available to create URL");let r="string"==typeof e?e:Sn(e);r=r.replace(/ $/,"%20"),!t&&r.startsWith("//")&&(r=n+r);return new URL(r,n)}(e)}let m={get action(){return i},get location(){return e(a,o)},listen(e){if(u)throw new Error("A history only accepts one active listener");return a.addEventListener(gn,f),u=e,()=>{a.removeEventListener(gn,f),u=null}},createHref:e=>t(a,e),createURL:h,encodeLocation(e){let t=h(e);return{pathname:t.pathname,search:t.search,hash:t.hash}},push:d,replace:p,go:e=>o.go(e)};return m}(function(e,t){let{pathname:n,search:r,hash:a}=e.location;return kn("",{pathname:n,search:r,hash:a},t.state&&t.state.usr||null,t.state&&t.state.key||"default")},function(e,t){return"string"==typeof t?t:Sn(t)},0,e)}function vn(e,t){if(!1===e||null==e)throw new Error(t)}function bn(e,t){if(!e){"undefined"!=typeof console&&console.warn(t);try{throw new Error(t)}catch(n){}}}function wn(e,t){return{usr:e.state,key:e.key,idx:t}}function kn(e,t,n=null,r){return{pathname:"string"==typeof e?e:e.pathname,search:"",hash:"",..."string"==typeof t?xn(t):t,state:n,key:t&&t.key||r||Math.random().toString(36).substring(2,10)}}function Sn({pathname:e="/",search:t="",hash:n=""}){return t&&"?"!==t&&(e+="?"===t.charAt(0)?t:"?"+t),n&&"#"!==n&&(e+="#"===n.charAt(0)?n:"#"+n),e}function xn(e){let t={};if(e){let n=e.indexOf("#");n>=0&&(t.hash=e.substring(n),e=e.substring(0,n));let r=e.indexOf("?");r>=0&&(t.search=e.substring(r),e=e.substring(0,r)),e&&(t.pathname=e)}return t}function En(e,t,n="/"){return function(e,t,n,r){let a="string"==typeof t?xn(t):t,l=$n(a.pathname||"/",n);if(null==l)return null;let o=Cn(e);!function(e){e.sort((e,t)=>e.score!==t.score?t.score-e.score:function(e,t){let n=e.length===t.length&&e.slice(0,-1).every((e,n)=>e===t[n]);return n?e[e.length-1]-t[t.length-1]:0}(e.routesMeta.map(e=>e.childrenIndex),t.routesMeta.map(e=>e.childrenIndex)))}(o);let i=null;for(let u=0;null==i&&u<o.length;++u){let e=Dn(l);i=An(o[u],e,r)}return i}(e,t,n,!1)}function Cn(e,t=[],n=[],r=""){let a=(e,a,l)=>{let o={relativePath:void 0===l?e.path||"":l,caseSensitive:!0===e.caseSensitive,childrenIndex:a,route:e};o.relativePath.startsWith("/")&&(vn(o.relativePath.startsWith(r),`Absolute route path "${o.relativePath}" nested under path "${r}" is not valid. An absolute child route path must start with the combined path of all its parent routes.`),o.relativePath=o.relativePath.slice(r.length));let i=Bn([r,o.relativePath]),u=n.concat(o);e.children&&e.children.length>0&&(vn(!0!==e.index,`Index routes must not have child routes. Please remove all child routes from route path "${i}".`),Cn(e.children,t,u,i)),(null!=e.path||e.index)&&t.push({path:i,score:On(i,e.index),routesMeta:u})};return e.forEach((e,t)=>{if(""!==e.path&&e.path?.includes("?"))for(let n of Pn(e.path))a(e,t,n);else a(e,t)}),t}function Pn(e){let t=e.split("/");if(0===t.length)return[];let[n,...r]=t,a=n.endsWith("?"),l=n.replace(/\?$/,"");if(0===r.length)return a?[l,""]:[l];let o=Pn(r.join("/")),i=[];return i.push(...o.map(e=>""===e?l:[l,e].join("/"))),a&&i.push(...o),i.map(t=>e.startsWith("/")&&""===t?"/":t)}var _n=/^:[\w-]+$/,Nn=3,zn=2,Tn=1,Ln=10,Rn=-2,jn=e=>"*"===e;function On(e,t){let n=e.split("/"),r=n.length;return n.some(jn)&&(r+=Rn),t&&(r+=zn),n.filter(e=>!jn(e)).reduce((e,t)=>e+(_n.test(t)?Nn:""===t?Tn:Ln),r)}function An(e,t,n=!1){let{routesMeta:r}=e,a={},l="/",o=[];for(let i=0;i<r.length;++i){let e=r[i],u=i===r.length-1,s="/"===l?t:t.slice(l.length)||"/",c=In({path:e.relativePath,caseSensitive:e.caseSensitive,end:u},s),f=e.route;if(!c&&u&&n&&!r[r.length-1].route.index&&(c=In({path:e.relativePath,caseSensitive:e.caseSensitive,end:!1},s)),!c)return null;Object.assign(a,c.params),o.push({params:a,pathname:Bn([l,c.pathname]),pathnameBase:Hn(Bn([l,c.pathnameBase])),route:f}),"/"!==c.pathnameBase&&(l=Bn([l,c.pathnameBase]))}return o}function In(e,t){"string"==typeof e&&(e={path:e,caseSensitive:!1,end:!0});let[n,r]=function(e,t=!1,n=!0){bn("*"===e||!e.endsWith("*")||e.endsWith("/*"),`Route path "${e}" will be treated as if it were "${e.replace(/\*$/,"/*")}" because the \`*\` character must always follow a \`/\` in the pattern. To get rid of this warning, please change the route path to "${e.replace(/\*$/,"/*")}".`);let r=[],a="^"+e.replace(/\/*\*?$/,"").replace(/^\/*/,"/").replace(/[\\.*+^${}|()[\]]/g,"\\$&").replace(/\/:([\w-]+)(\?)?/g,(e,t,n)=>(r.push({paramName:t,isOptional:null!=n}),n?"/?([^\\/]+)?":"/([^\\/]+)"));e.endsWith("*")?(r.push({paramName:"*"}),a+="*"===e||"/*"===e?"(.*)$":"(?:\\/(.+)|\\/*)$"):n?a+="\\/*$":""!==e&&"/"!==e&&(a+="(?:(?=\\/|$))");let l=new RegExp(a,t?void 0:"i");return[l,r]}(e.path,e.caseSensitive,e.end),a=t.match(n);if(!a)return null;let l=a[0],o=l.replace(/(.)\/+$/,"$1"),i=a.slice(1);return{params:r.reduce((e,{paramName:t,isOptional:n},r)=>{if("*"===t){let e=i[r]||"";o=l.slice(0,l.length-e.length).replace(/(.)\/+$/,"$1")}const a=i[r];return e[t]=n&&!a?void 0:(a||"").replace(/%2F/g,"/"),e},{}),pathname:l,pathnameBase:o,pattern:e}}function Dn(e){try{return e.split("/").map(e=>decodeURIComponent(e).replace(/\//g,"%2F")).join("/")}catch(t){return bn(!1,`The URL path "${e}" could not be decoded because it is a malformed URL segment. This is probably due to a bad percent encoding (${t}).`),e}}function $n(e,t){if("/"===t)return e;if(!e.toLowerCase().startsWith(t.toLowerCase()))return null;let n=t.endsWith("/")?t.length-1:t.length,r=e.charAt(n);return r&&"/"!==r?null:e.slice(n)||"/"}function Fn(e,t,n,r){return`Cannot include a '${e}' character in a manually specified \`to.${t}\` field [${JSON.stringify(r)}].  Please separate it out to the \`to.${n}\` field. Alternatively you may provide the full path as a string in <Link to="..."> and the router will parse it for you.`}function Mn(e){let t=function(e){return e.filter((e,t)=>0===t||e.route.path&&e.route.path.length>0)}(e);return t.map((e,n)=>n===t.length-1?e.pathname:e.pathnameBase)}function Un(e,t,n,r=!1){let a;"string"==typeof e?a=xn(e):(a={...e},vn(!a.pathname||!a.pathname.includes("?"),Fn("?","pathname","search",a)),vn(!a.pathname||!a.pathname.includes("#"),Fn("#","pathname","hash",a)),vn(!a.search||!a.search.includes("#"),Fn("#","search","hash",a)));let l,o=""===e||""===a.pathname,i=o?"/":a.pathname;if(null==i)l=n;else{let e=t.length-1;if(!r&&i.startsWith("..")){let t=i.split("/");for(;".."===t[0];)t.shift(),e-=1;a.pathname=t.join("/")}l=e>=0?t[e]:"/"}let u=function(e,t="/"){let{pathname:n,search:r="",hash:a=""}="string"==typeof e?xn(e):e,l=n?n.startsWith("/")?n:function(e,t){let n=t.replace(/\/+$/,"").split("/");return e.split("/").forEach(e=>{".."===e?n.length>1&&n.pop():"."!==e&&n.push(e)}),n.length>1?n.join("/"):"/"}(n,t):t;return{pathname:l,search:Wn(r),hash:Vn(a)}}(a,l),s=i&&"/"!==i&&i.endsWith("/"),c=(o||"."===i)&&n.endsWith("/");return u.pathname.endsWith("/")||!s&&!c||(u.pathname+="/"),u}var Bn=e=>e.join("/").replace(/\/\/+/g,"/"),Hn=e=>e.replace(/\/+$/,"").replace(/^\/*/,"/"),Wn=e=>e&&"?"!==e?e.startsWith("?")?e:"?"+e:"",Vn=e=>e&&"#"!==e?e.startsWith("#")?e:"#"+e:"";var qn=["POST","PUT","PATCH","DELETE"];new Set(qn);var Qn=["GET",...qn];new Set(Qn);var Yn=T.createContext(null);Yn.displayName="DataRouter";var Gn=T.createContext(null);Gn.displayName="DataRouterState",T.createContext(!1);var Kn=T.createContext({isTransitioning:!1});Kn.displayName="ViewTransition",T.createContext(new Map).displayName="Fetchers",T.createContext(null).displayName="Await";var Xn=T.createContext(null);Xn.displayName="Navigation";var Jn=T.createContext(null);Jn.displayName="Location";var Zn=T.createContext({outlet:null,matches:[],isDataRoute:!1});Zn.displayName="Route";var er=T.createContext(null);function tr(){return null!=T.useContext(Jn)}function nr(){return vn(tr(),"useLocation() may be used only in the context of a <Router> component."),T.useContext(Jn).location}er.displayName="RouteError";var rr="You should call navigate() in a React.useEffect(), not when your component is first rendered.";function ar(e){T.useContext(Xn).static||T.useLayoutEffect(e)}function lr(){let{isDataRoute:e}=T.useContext(Zn);return e?function(){let{router:e}=function(e){let t=T.useContext(Yn);return vn(t,dr(e)),t}("useNavigate"),t=pr("useNavigate"),n=T.useRef(!1);return ar(()=>{n.current=!0}),T.useCallback(async(r,a={})=>{bn(n.current,rr),n.current&&("number"==typeof r?e.navigate(r):await e.navigate(r,{fromRouteId:t,...a}))},[e,t])}():function(){vn(tr(),"useNavigate() may be used only in the context of a <Router> component.");let e=T.useContext(Yn),{basename:t,navigator:n}=T.useContext(Xn),{matches:r}=T.useContext(Zn),{pathname:a}=nr(),l=JSON.stringify(Mn(r)),o=T.useRef(!1);return ar(()=>{o.current=!0}),T.useCallback((r,i={})=>{if(bn(o.current,rr),!o.current)return;if("number"==typeof r)return void n.go(r);let u=Un(r,JSON.parse(l),a,"path"===i.relative);null==e&&"/"!==t&&(u.pathname="/"===u.pathname?t:Bn([t,u.pathname])),(i.replace?n.replace:n.push)(u,i.state,i)},[t,n,l,a,e])}()}function or(e,{relative:t}={}){let{matches:n}=T.useContext(Zn),{pathname:r}=nr(),a=JSON.stringify(Mn(n));return T.useMemo(()=>Un(e,JSON.parse(a),r,"path"===t),[e,a,r,t])}function ir(e,t,n,r){vn(tr(),"useRoutes() may be used only in the context of a <Router> component.");let a,{navigator:l}=T.useContext(Xn),{matches:o}=T.useContext(Zn),i=o[o.length-1],u=i?i.params:{},s=i?i.pathname:"/",c=i?i.pathnameBase:"/",f=i&&i.route;{let e=f&&f.path||"";mr(s,!f||e.endsWith("*")||e.endsWith("*?"),`You rendered descendant <Routes> (or called \`useRoutes()\`) at "${s}" (under <Route path="${e}">) but the parent route path has no trailing "*". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.\n\nPlease change the parent <Route path="${e}"> to <Route path="${"/"===e?"*":`${e}/*`}">.`)}a=nr();let d=a.pathname||"/",p=d;if("/"!==c){let e=c.replace(/^\//,"").split("/");p="/"+d.replace(/^\//,"").split("/").slice(e.length).join("/")}let h=En(e,{pathname:p});bn(f||null!=h,`No routes matched location "${a.pathname}${a.search}${a.hash}" `),bn(null==h||void 0!==h[h.length-1].route.element||void 0!==h[h.length-1].route.Component||void 0!==h[h.length-1].route.lazy,`Matched leaf route at location "${a.pathname}${a.search}${a.hash}" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.`);let m=function(e,t=[],n=null){if(null==e){if(!n)return null;if(n.errors)e=n.matches;else{if(0!==t.length||n.initialized||!(n.matches.length>0))return null;e=n.matches}}let r=e,a=n?.errors;if(null!=a){let e=r.findIndex(e=>e.route.id&&void 0!==a?.[e.route.id]);vn(e>=0,`Could not find a matching route for errors on route IDs: ${Object.keys(a).join(",")}`),r=r.slice(0,Math.min(r.length,e+1))}let l=!1,o=-1;if(n)for(let i=0;i<r.length;i++){let e=r[i];if((e.route.HydrateFallback||e.route.hydrateFallbackElement)&&(o=i),e.route.id){let{loaderData:t,errors:a}=n,i=e.route.loader&&!t.hasOwnProperty(e.route.id)&&(!a||void 0===a[e.route.id]);if(e.route.lazy||i){l=!0,r=o>=0?r.slice(0,o+1):[r[0]];break}}}return r.reduceRight((e,i,u)=>{let s,c=!1,f=null,d=null;n&&(s=a&&i.route.id?a[i.route.id]:void 0,f=i.route.errorElement||sr,l&&(o<0&&0===u?(mr("route-fallback",!1,"No `HydrateFallback` element provided to render during initial hydration"),c=!0,d=null):o===u&&(c=!0,d=i.route.hydrateFallbackElement||null)));let p=t.concat(r.slice(0,u+1)),h=()=>{let t;return t=s?f:c?d:i.route.Component?T.createElement(i.route.Component,null):i.route.element?i.route.element:e,T.createElement(fr,{match:i,routeContext:{outlet:e,matches:p,isDataRoute:null!=n},children:t})};return n&&(i.route.ErrorBoundary||i.route.errorElement||0===u)?T.createElement(cr,{location:n.location,revalidation:n.revalidation,component:f,error:s,children:h(),routeContext:{outlet:null,matches:p,isDataRoute:!0}}):h()},null)}(h&&h.map(e=>Object.assign({},e,{params:Object.assign({},u,e.params),pathname:Bn([c,l.encodeLocation?l.encodeLocation(e.pathname).pathname:e.pathname]),pathnameBase:"/"===e.pathnameBase?c:Bn([c,l.encodeLocation?l.encodeLocation(e.pathnameBase).pathname:e.pathnameBase])})),o,n,r);return m}function ur(){let e=function(){let e=T.useContext(er),t=function(e){let t=T.useContext(Gn);return vn(t,dr(e)),t}("useRouteError"),n=pr("useRouteError");if(void 0!==e)return e;return t.errors?.[n]}(),t=function(e){return null!=e&&"number"==typeof e.status&&"string"==typeof e.statusText&&"boolean"==typeof e.internal&&"data"in e}(e)?`${e.status} ${e.statusText}`:e instanceof Error?e.message:JSON.stringify(e),n=e instanceof Error?e.stack:null,r="rgba(200,200,200, 0.5)",a={padding:"0.5rem",backgroundColor:r},l={padding:"2px 4px",backgroundColor:r},o=null;return console.error("Error handled by React Router default ErrorBoundary:",e),o=T.createElement(T.Fragment,null,T.createElement("p",null,"💿 Hey developer 👋"),T.createElement("p",null,"You can provide a way better UX than this when your app throws errors by providing your own ",T.createElement("code",{style:l},"ErrorBoundary")," or"," ",T.createElement("code",{style:l},"errorElement")," prop on your route.")),T.createElement(T.Fragment,null,T.createElement("h2",null,"Unexpected Application Error!"),T.createElement("h3",{style:{fontStyle:"italic"}},t),n?T.createElement("pre",{style:a},n):null,o)}T.createContext(null);var sr=T.createElement(ur,null),cr=class extends T.Component{constructor(e){super(e),this.state={location:e.location,revalidation:e.revalidation,error:e.error}}static getDerivedStateFromError(e){return{error:e}}static getDerivedStateFromProps(e,t){return t.location!==e.location||"idle"!==t.revalidation&&"idle"===e.revalidation?{error:e.error,location:e.location,revalidation:e.revalidation}:{error:void 0!==e.error?e.error:t.error,location:t.location,revalidation:e.revalidation||t.revalidation}}componentDidCatch(e,t){console.error("React Router caught the following error during render",e,t)}render(){return void 0!==this.state.error?T.createElement(Zn.Provider,{value:this.props.routeContext},T.createElement(er.Provider,{value:this.state.error,children:this.props.component})):this.props.children}};function fr({routeContext:e,match:t,children:n}){let r=T.useContext(Yn);return r&&r.static&&r.staticContext&&(t.route.errorElement||t.route.ErrorBoundary)&&(r.staticContext._deepestRenderedBoundaryId=t.route.id),T.createElement(Zn.Provider,{value:e},n)}function dr(e){return`${e} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`}function pr(e){let t=function(e){let t=T.useContext(Zn);return vn(t,dr(e)),t}(e),n=t.matches[t.matches.length-1];return vn(n.route.id,`${e} can only be used on routes that contain a unique "id"`),n.route.id}var hr={};function mr(e,t,n){t||hr[e]||(hr[e]=!0,bn(!1,n))}function gr({basename:e="/",children:t=null,location:n,navigationType:r="POP",navigator:a,static:l=!1}){vn(!tr(),"You cannot render a <Router> inside another <Router>. You should never have more than one in your app.");let o=e.replace(/^\/*/,"/"),i=T.useMemo(()=>({basename:o,navigator:a,static:l,future:{}}),[o,a,l]);"string"==typeof n&&(n=xn(n));let{pathname:u="/",search:s="",hash:c="",state:f=null,key:d="default"}=n,p=T.useMemo(()=>{let e=$n(u,o);return null==e?null:{location:{pathname:e,search:s,hash:c,state:f,key:d},navigationType:r}},[o,u,s,c,f,d,r]);return bn(null!=p,`<Router basename="${o}"> is not able to match the URL "${u}${s}${c}" because it does not start with the basename, so the <Router> won't render anything.`),null==p?null:T.createElement(Xn.Provider,{value:i},T.createElement(Jn.Provider,{children:t,value:p}))}T.memo(function({routes:e,future:t,state:n}){return ir(e,0,n,t)});var yr="get",vr="application/x-www-form-urlencoded";function br(e){return null!=e&&"string"==typeof e.tagName}var wr=null;var kr=new Set(["application/x-www-form-urlencoded","multipart/form-data","text/plain"]);function Sr(e){return null==e||kr.has(e)?e:(bn(!1,`"${e}" is not a valid \`encType\` for \`<Form>\`/\`<fetcher.Form>\` and will default to "${vr}"`),null)}function xr(e,t){let n,r,a,l,o;if(br(i=e)&&"form"===i.tagName.toLowerCase()){let o=e.getAttribute("action");r=o?$n(o,t):null,n=e.getAttribute("method")||yr,a=Sr(e.getAttribute("enctype"))||vr,l=new FormData(e)}else if(function(e){return br(e)&&"button"===e.tagName.toLowerCase()}(e)||function(e){return br(e)&&"input"===e.tagName.toLowerCase()}(e)&&("submit"===e.type||"image"===e.type)){let o=e.form;if(null==o)throw new Error('Cannot submit a <button> or <input type="submit"> without a <form>');let i=e.getAttribute("formaction")||o.getAttribute("action");if(r=i?$n(i,t):null,n=e.getAttribute("formmethod")||o.getAttribute("method")||yr,a=Sr(e.getAttribute("formenctype"))||Sr(o.getAttribute("enctype"))||vr,l=new FormData(o,e),!function(){if(null===wr)try{new FormData(document.createElement("form"),0),wr=!1}catch(e){wr=!0}return wr}()){let{name:t,type:n,value:r}=e;if("image"===n){let e=t?`${t}.`:"";l.append(`${e}x`,"0"),l.append(`${e}y`,"0")}else t&&l.append(t,r)}}else{if(br(e))throw new Error('Cannot submit element that is not <form>, <button>, or <input type="submit|image">');n=yr,r=null,a=vr,o=e}var i;return l&&"text/plain"===a&&(o=l,l=void 0),{action:r,method:n.toLowerCase(),encType:a,formData:l,body:o}}function Er(e,t){if(!1===e||null==e)throw new Error(t)}function Cr(e){return null!=e&&(null==e.href?"preload"===e.rel&&"string"==typeof e.imageSrcSet&&"string"==typeof e.imageSizes:"string"==typeof e.rel&&"string"==typeof e.href)}async function Pr(e,t,n){return function(e,t){let n=new Set;return new Set(t),e.reduce((e,t)=>{let r=JSON.stringify(function(e){let t={},n=Object.keys(e).sort();for(let r of n)t[r]=e[r];return t}(t));return n.has(r)||(n.add(r),e.push({key:r,link:t})),e},[])}((await Promise.all(e.map(async e=>{let r=t.routes[e.route.id];if(r){let e=await async function(e,t){if(e.id in t)return t[e.id];try{let n=await import(e.module);return t[e.id]=n,n}catch(n){return console.error(`Error loading route module \`${e.module}\`, reloading page...`),console.error(n),window.__reactRouterContext&&window.__reactRouterContext.isSpaMode,window.location.reload(),new Promise(()=>{})}}(r,n);return e.links?e.links():[]}return[]}))).flat(1).filter(Cr).filter(e=>"stylesheet"===e.rel||"preload"===e.rel).map(e=>"stylesheet"===e.rel?{...e,rel:"prefetch",as:"style"}:{...e,rel:"prefetch"}))}function _r(e,t,n,r,a,l){let o=(e,t)=>!n[t]||e.route.id!==n[t].route.id,i=(e,t)=>n[t].pathname!==e.pathname||n[t].route.path?.endsWith("*")&&n[t].params["*"]!==e.params["*"];return"assets"===l?t.filter((e,t)=>o(e,t)||i(e,t)):"data"===l?t.filter((t,l)=>{let u=r.routes[t.route.id];if(!u||!u.hasLoader)return!1;if(o(t,l)||i(t,l))return!0;if(t.route.shouldRevalidate){let r=t.route.shouldRevalidate({currentUrl:new URL(a.pathname+a.search+a.hash,window.origin),currentParams:n[0]?.params||{},nextUrl:new URL(e,window.origin),nextParams:t.params,defaultShouldRevalidate:!0});if("boolean"==typeof r)return r}return!0}):[]}function Nr(e,t,{includeHydrateFallback:n}={}){return r=e.map(e=>{let r=t.routes[e.route.id];if(!r)return[];let a=[r.module];return r.clientActionModule&&(a=a.concat(r.clientActionModule)),r.clientLoaderModule&&(a=a.concat(r.clientLoaderModule)),n&&r.hydrateFallbackModule&&(a=a.concat(r.hydrateFallbackModule)),r.imports&&(a=a.concat(r.imports)),a}).flat(1),[...new Set(r)];var r}function zr(){let e=T.useContext(Yn);return Er(e,"You must render this element inside a <DataRouterContext.Provider> element"),e}Object.getOwnPropertyNames(Object.prototype).sort().join("\0");var Tr=T.createContext(void 0);function Lr(){let e=T.useContext(Tr);return Er(e,"You must render this element inside a <HydratedRouter> element"),e}function Rr(e,t){return n=>{e&&e(n),n.defaultPrevented||t(n)}}function jr({page:e,...t}){let{router:n}=zr(),r=T.useMemo(()=>En(n.routes,e,n.basename),[n.routes,e,n.basename]);return r?T.createElement(Or,{page:e,matches:r,...t}):null}function Or({page:e,matches:t,...n}){let r=nr(),{manifest:a,routeModules:l}=Lr(),{basename:o}=zr(),{loaderData:i,matches:u}=function(){let e=T.useContext(Gn);return Er(e,"You must render this element inside a <DataRouterStateContext.Provider> element"),e}(),s=T.useMemo(()=>_r(e,t,u,a,r,"data"),[e,t,u,a,r]),c=T.useMemo(()=>_r(e,t,u,a,r,"assets"),[e,t,u,a,r]),f=T.useMemo(()=>{if(e===r.pathname+r.search+r.hash)return[];let n=new Set,u=!1;if(t.forEach(e=>{let t=a.routes[e.route.id];t&&t.hasLoader&&(!s.some(t=>t.route.id===e.route.id)&&e.route.id in i&&l[e.route.id]?.shouldRevalidate||t.hasClientLoader?u=!0:n.add(e.route.id))}),0===n.size)return[];let c=function(e,t,n){let r="string"==typeof e?new URL(e,"undefined"==typeof window?"server://singlefetch/":window.location.origin):e;return"/"===r.pathname?r.pathname=`_root.${n}`:t&&"/"===$n(r.pathname,t)?r.pathname=`${t.replace(/\/$/,"")}/_root.${n}`:r.pathname=`${r.pathname.replace(/\/$/,"")}.${n}`,r}(e,o,"data");return u&&n.size>0&&c.searchParams.set("_routes",t.filter(e=>n.has(e.route.id)).map(e=>e.route.id).join(",")),[c.pathname+c.search]},[o,i,r,a,s,t,e,l]),d=T.useMemo(()=>Nr(c,a),[c,a]),p=function(e){let{manifest:t,routeModules:n}=Lr(),[r,a]=T.useState([]);return T.useEffect(()=>{let r=!1;return Pr(e,t,n).then(e=>{r||a(e)}),()=>{r=!0}},[e,t,n]),r}(c);return T.createElement(T.Fragment,null,f.map(e=>T.createElement("link",{key:e,rel:"prefetch",as:"fetch",href:e,...n})),d.map(e=>T.createElement("link",{key:e,rel:"modulepreload",href:e,...n})),p.map(({key:e,link:t})=>T.createElement("link",{key:e,nonce:n.nonce,...t})))}function Ar(...e){return t=>{e.forEach(e=>{"function"==typeof e?e(t):null!=e&&(e.current=t)})}}Tr.displayName="FrameworkContext";var Ir="undefined"!=typeof window&&void 0!==window.document&&void 0!==window.document.createElement;try{Ir&&(window.__reactRouterVersion="7.8.0")}catch(yl){}function Dr({basename:e,children:t,window:n}){let r=T.useRef();null==r.current&&(r.current=yn({window:n,v5Compat:!0}));let a=r.current,[l,o]=T.useState({action:a.action,location:a.location}),i=T.useCallback(e=>{T.startTransition(()=>o(e))},[o]);return T.useLayoutEffect(()=>a.listen(i),[a,i]),T.createElement(gr,{basename:e,children:t,location:l.location,navigationType:l.action,navigator:a})}var $r=/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i,Fr=T.forwardRef(function({onClick:e,discover:t="render",prefetch:n="none",relative:r,reloadDocument:a,replace:l,state:o,target:i,to:u,preventScrollReset:s,viewTransition:c,...f},d){let p,{basename:h}=T.useContext(Xn),m="string"==typeof u&&$r.test(u),g=!1;if("string"==typeof u&&m&&(p=u,Ir))try{let e=new URL(window.location.href),t=u.startsWith("//")?new URL(e.protocol+u):new URL(u),n=$n(t.pathname,h);t.origin===e.origin&&null!=n?u=n+t.search+t.hash:g=!0}catch(yl){bn(!1,`<Link to="${u}"> contains an invalid URL which will probably break when clicked - please update to a valid URL path.`)}let y=function(e,{relative:t}={}){vn(tr(),"useHref() may be used only in the context of a <Router> component.");let{basename:n,navigator:r}=T.useContext(Xn),{hash:a,pathname:l,search:o}=or(e,{relative:t}),i=l;return"/"!==n&&(i="/"===l?n:Bn([n,l])),r.createHref({pathname:i,search:o,hash:a})}(u,{relative:r}),[v,b,w]=function(e,t){let n=T.useContext(Tr),[r,a]=T.useState(!1),[l,o]=T.useState(!1),{onFocus:i,onBlur:u,onMouseEnter:s,onMouseLeave:c,onTouchStart:f}=t,d=T.useRef(null);T.useEffect(()=>{if("render"===e&&o(!0),"viewport"===e){let e=new IntersectionObserver(e=>{e.forEach(e=>{o(e.isIntersecting)})},{threshold:.5});return d.current&&e.observe(d.current),()=>{e.disconnect()}}},[e]),T.useEffect(()=>{if(r){let e=setTimeout(()=>{o(!0)},100);return()=>{clearTimeout(e)}}},[r]);let p=()=>{a(!0)},h=()=>{a(!1),o(!1)};return n?"intent"!==e?[l,d,{}]:[l,d,{onFocus:Rr(i,p),onBlur:Rr(u,h),onMouseEnter:Rr(s,p),onMouseLeave:Rr(c,h),onTouchStart:Rr(f,p)}]:[!1,d,{}]}(n,f),k=function(e,{target:t,replace:n,state:r,preventScrollReset:a,relative:l,viewTransition:o}={}){let i=lr(),u=nr(),s=or(e,{relative:l});return T.useCallback(c=>{if(function(e,t){return!(0!==e.button||t&&"_self"!==t||function(e){return!!(e.metaKey||e.altKey||e.ctrlKey||e.shiftKey)}(e))}(c,t)){c.preventDefault();let t=void 0!==n?n:Sn(u)===Sn(s);i(e,{replace:t,state:r,preventScrollReset:a,relative:l,viewTransition:o})}},[u,i,s,n,r,t,e,a,l,o])}(u,{replace:l,state:o,target:i,preventScrollReset:s,relative:r,viewTransition:c});let S=T.createElement("a",{...f,...w,href:p||y,onClick:g||a?e:function(t){e&&e(t),t.defaultPrevented||k(t)},ref:Ar(d,b),target:i,"data-discover":m||"render"!==t?void 0:"true"});return v&&!m?T.createElement(T.Fragment,null,S,T.createElement(jr,{page:y})):S});function Mr(e){let t=T.useContext(Yn);return vn(t,function(e){return`${e} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`}(e)),t}Fr.displayName="Link",T.forwardRef(function({"aria-current":e="page",caseSensitive:t=!1,className:n="",end:r=!1,style:a,to:l,viewTransition:o,children:i,...u},s){let c=or(l,{relative:u.relative}),f=nr(),d=T.useContext(Gn),{navigator:p,basename:h}=T.useContext(Xn),m=null!=d&&function(e,{relative:t}={}){let n=T.useContext(Kn);vn(null!=n,"`useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?");let{basename:r}=Mr("useViewTransitionState"),a=or(e,{relative:t});if(!n.isTransitioning)return!1;let l=$n(n.currentLocation.pathname,r)||n.currentLocation.pathname,o=$n(n.nextLocation.pathname,r)||n.nextLocation.pathname;return null!=In(a.pathname,o)||null!=In(a.pathname,l)}(c)&&!0===o,g=p.encodeLocation?p.encodeLocation(c).pathname:c.pathname,y=f.pathname,v=d&&d.navigation&&d.navigation.location?d.navigation.location.pathname:null;t||(y=y.toLowerCase(),v=v?v.toLowerCase():null,g=g.toLowerCase()),v&&h&&(v=$n(v,h)||v);const b="/"!==g&&g.endsWith("/")?g.length-1:g.length;let w,k=y===g||!r&&y.startsWith(g)&&"/"===y.charAt(b),S=null!=v&&(v===g||!r&&v.startsWith(g)&&"/"===v.charAt(g.length)),x={isActive:k,isPending:S,isTransitioning:m},E=k?e:void 0;w="function"==typeof n?n(x):[n,k?"active":null,S?"pending":null,m?"transitioning":null].filter(Boolean).join(" ");let C="function"==typeof a?a(x):a;return T.createElement(Fr,{...u,"aria-current":E,className:w,ref:s,style:C,to:l,viewTransition:o},"function"==typeof i?i(x):i)}).displayName="NavLink",T.forwardRef(({discover:e="render",fetcherKey:t,navigate:n,reloadDocument:r,replace:a,state:l,method:o=yr,action:i,onSubmit:u,relative:s,preventScrollReset:c,viewTransition:f,...d},p)=>{let h=function(){let{router:e}=Mr("useSubmit"),{basename:t}=T.useContext(Xn),n=pr("useRouteId");return T.useCallback(async(r,a={})=>{let{action:l,method:o,encType:i,formData:u,body:s}=xr(r,t);if(!1===a.navigate){let t=a.fetcherKey||Br();await e.fetch(t,n,a.action||l,{preventScrollReset:a.preventScrollReset,formData:u,body:s,formMethod:a.method||o,formEncType:a.encType||i,flushSync:a.flushSync})}else await e.navigate(a.action||l,{preventScrollReset:a.preventScrollReset,formData:u,body:s,formMethod:a.method||o,formEncType:a.encType||i,replace:a.replace,state:a.state,fromRouteId:n,flushSync:a.flushSync,viewTransition:a.viewTransition})},[e,t,n])}(),m=function(e,{relative:t}={}){let{basename:n}=T.useContext(Xn),r=T.useContext(Zn);vn(r,"useFormAction must be used inside a RouteContext");let[a]=r.matches.slice(-1),l={...or(e||".",{relative:t})},o=nr();if(null==e){l.search=o.search;let e=new URLSearchParams(l.search),t=e.getAll("index");if(t.some(e=>""===e)){e.delete("index"),t.filter(e=>e).forEach(t=>e.append("index",t));let n=e.toString();l.search=n?`?${n}`:""}}e&&"."!==e||!a.route.index||(l.search=l.search?l.search.replace(/^\?/,"?index&"):"?index");"/"!==n&&(l.pathname="/"===l.pathname?n:Bn([n,l.pathname]));return Sn(l)}(i,{relative:s}),g="get"===o.toLowerCase()?"get":"post",y="string"==typeof i&&$r.test(i);return T.createElement("form",{ref:p,method:g,action:m,onSubmit:r?u:e=>{if(u&&u(e),e.defaultPrevented)return;e.preventDefault();let r=e.nativeEvent.submitter,i=r?.getAttribute("formmethod")||o;h(r||e.currentTarget,{fetcherKey:t,method:i,navigate:n,replace:a,state:l,relative:s,preventScrollReset:c,viewTransition:f})},...d,"data-discover":y||"render"!==e?void 0:"true"})}).displayName="Form";var Ur=0,Br=()=>`__${String(++Ur)}__`;const Hr=e=>i.jsx("svg",{width:e.width,height:e.height,viewBox:e.viewBox,fill:e.fill||"#FFB400",children:i.jsx("use",{xlinkHref:`/portfolio/assets/icons-sprite-DKKuDHlM.svg#${e.iconId}`})}),Wr=fn.nav``,Vr=fn.ul``,qr=fn.li`
   display: flex;
   gap: 10px;
   margin: 23px 0;
-`,Xr=fn.a`
+`,Qr=fn.a`
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
 
@@ -97,13 +78,13 @@ section {
   &:hover {
     background-color: ${pn.accent};
   }
-`,Jr=()=>i.jsxs(Zr,{children:[i.jsx(aa,{isOpen:!1,children:i.jsx("span",{})}),i.jsx(ra,{isOpen:!1,children:i.jsxs(na,{children:[i.jsx(ea,{children:i.jsx(ta,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"home"})})}),i.jsx(ea,{children:i.jsx(ta,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"service"})})}),i.jsx(ea,{children:i.jsx(ta,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"works"})})}),i.jsx(ea,{children:i.jsx(ta,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"message"})})}),i.jsx(ea,{children:i.jsx(ta,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"contact"})})}),i.jsx(ea,{children:i.jsx(ta,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"location"})})})]})})]}),Zr=fn.nav`
-display: none;
+`,Yr=()=>i.jsx(Wr,{children:i.jsxs(Vr,{children:[i.jsx(qr,{children:i.jsx(Qr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"home"})})}),i.jsx(qr,{children:i.jsx(Qr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"service"})})}),i.jsx(qr,{children:i.jsx(Qr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"works"})})}),i.jsx(qr,{children:i.jsx(Qr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"message"})})}),i.jsx(qr,{children:i.jsx(Qr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"contact"})})}),i.jsx(qr,{children:i.jsx(Qr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"location"})})})]})}),Gr=fn.nav`
+  display: none;
 
-@media ${hn.laptop} {
-  display: block;
-}
-`,ea=fn.li``,ta=fn.a``,na=fn.ul``,ra=fn.div`
+  @media ${hn.laptop} {
+    display: block;
+  }
+`,Kr=fn.li``,Xr=fn.a``,Jr=fn.ul``,Zr=fn.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -126,7 +107,7 @@ display: none;
     justify-content: center;
     align-items: center;
   }
-`,aa=fn.button`
+`,ea=fn.button`
   position: fixed;
   top: -100px;
   right: -100px;
@@ -149,7 +130,7 @@ display: none;
       `}
 
     &::before {
-      content: "";
+      content: '';
       display: block;
       width: 36px;
       height: 2px;
@@ -164,7 +145,7 @@ display: none;
     }
 
     &::after {
-      content: "";
+      content: '';
       display: block;
       width: 24px;
       height: 2px;
@@ -179,7 +160,7 @@ display: none;
         `}
     }
   }
-`,la=fn.div`
+`,ta=()=>i.jsxs(Gr,{children:[i.jsx(ea,{isOpen:!1,children:i.jsx("span",{})}),i.jsx(Zr,{isOpen:!1,children:i.jsxs(Jr,{children:[i.jsx(Kr,{children:i.jsx(Xr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"home"})})}),i.jsx(Kr,{children:i.jsx(Xr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"service"})})}),i.jsx(Kr,{children:i.jsx(Xr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"works"})})}),i.jsx(Kr,{children:i.jsx(Xr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"message"})})}),i.jsx(Kr,{children:i.jsx(Xr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"contact"})})}),i.jsx(Kr,{children:i.jsx(Xr,{href:"",children:i.jsx(Hr,{width:"30",height:"30",viewBox:"0 0 18 18",iconId:"location"})})})]})})]}),na=fn.div`
   display: flex;
   flex-direction: ${e=>e.direction||""};
   flex-wrap: ${e=>e.wrap||""};
@@ -200,7 +181,25 @@ display: none;
     justify-content: center;
     align-items: center;
   }
-`,oa=()=>i.jsx(ia,{children:i.jsxs(la,{direction:"column",children:[i.jsx(Wr,{}),i.jsx(Qr,{}),i.jsx(Jr,{})]})}),ia=fn.header`
+`,ra=fn.div`
+  margin-top: 25px;
+
+  cursor: pointer;
+
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: ${pn.accent};
+  }
+`,aa=fn.button``,la=()=>i.jsxs(ra,{children:[i.jsx(Hr,{iconId:"contrast",width:"30",height:"30",viewBox:"0 0 30 30"}),i.jsx(aa,{})]}),oa=fn.header`
   padding: 21px;
   min-height: 650px;
 
@@ -209,12 +208,12 @@ display: none;
   right: 200px;
   z-index: 99999;
 
-  /* border: 3px solid ${pn.title}; */
-
   @media ${hn.smallDisplay} {
-    display: none;
+    position: fixed;
+    top: 0;
+    right: 50px;
   }
-`,ua=fn.div`
+`,ia=()=>i.jsx(oa,{children:i.jsxs(na,{direction:"column",children:[i.jsx(la,{}),i.jsx(Yr,{}),i.jsx(ta,{})]})}),ua=fn.div`
   max-width: 970px;
   margin: 50px auto;
 
@@ -231,7 +230,7 @@ display: none;
   height: 35px;
   border-radius: 2px;
 
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 14px;
   text-transform: uppercase;
@@ -240,7 +239,7 @@ display: none;
   &:hover {
     transform: scale(1.1);
   }
-`,ca=()=>i.jsx(fa,{children:i.jsx(ua,{children:i.jsxs(la,{children:[i.jsxs(da,{children:[i.jsx(pa,{children:i.jsxs(ha,{children:["I’m ",i.jsx("span",{children:"Iryna Lebedeva"})]})}),i.jsxs(ma,{children:["I'm a ",i.jsx("strong",{children:"Frontend Developer"})," passionate about crafting ",i.jsx("strong",{children:"clean, efficient code"})," and"," ",i.jsx("strong",{children:"intuitive user experiences"}),". With 6+ months of experience, I build SPAs using"," ",i.jsx("strong",{children:"TypeScript, React, Redux, RTK Query, HTML and SCSS"})," ","and I'm currently expanding my toolkit with"," ",i.jsx("strong",{children:"Next.js"}),". ",i.jsx("br",{}),"I believe in writing"," ",i.jsx("strong",{children:"maintainable and scalable solutions"})," and actively follow industry updates to apply market-leading practices. I am also continuously improving my English language skills."]}),i.jsx(va,{children:i.jsx(sa,{children:"More about me"})})]}),i.jsx(ga,{children:i.jsx(ya,{src:"/portfolio/assets/IMG_5490-HuPpbg4v.png",alt:"My photo"})})]})})}),fa=fn.section``,da=fn.div`
+`,ca=fn.section``,fa=fn.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -248,8 +247,8 @@ display: none;
   padding: 30px;
   gap: 25px;
   background-color: ${pn.secondaryBg};
-`,pa=fn.div`
-  font-family: "Inter", sans-serif;
+`,da=fn.div`
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 32px;
   color: ${pn.title};
@@ -257,16 +256,16 @@ display: none;
   span {
     color: ${pn.accent};
   }
-`,ha=fn.h1`
+`,pa=fn.h1`
   line-height: 124%;
 
   @media ${hn.tablet} {
     margin: 0 0 0 20px;
   }
-`,ma=fn.p`
+`,ha=fn.p`
   display: block;
   max-width: 435px;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 15px;
   line-height: 150%;
@@ -280,14 +279,14 @@ display: none;
 
     font-size: 16px;
   }
-`,ga=fn.div`
+`,ma=fn.div`
   margin: 40px;
 
   position: relative;
   z-index: 0;
 
   &::before {
-    content: "";
+    content: '';
     width: 325px;
     height: 485px;
     border: 4px solid ${pn.title};
@@ -301,17 +300,17 @@ display: none;
       border: none;
     }
   }
-`,ya=fn.img`
+`,ga=fn.img`
   width: 325px;
   height: 450px;
   object-fit: cover;
-`,va=fn.div`
+`,ya=fn.div`
   @media ${hn.mobile} {
     button {
       height: 50px;
     }
   }
-`,ba=e=>i.jsx(wa,{children:i.jsxs(la,{direction:"column",children:[i.jsx(ka,{children:i.jsx(Hr,{iconId:e.iconId||"none",width:e.width||"80px",height:e.height||"80px",viewBox:e.viewBox||"0 0 50 50"})}),i.jsx(Sa,{children:e.title})]})}),wa=fn.div`
+`,va=()=>i.jsx(ca,{children:i.jsx(ua,{children:i.jsxs(na,{children:[i.jsxs(fa,{children:[i.jsx(da,{children:i.jsxs(pa,{children:["I’m ",i.jsx("span",{children:"Iryna Lebedeva"})]})}),i.jsxs(ha,{children:[i.jsx("strong",{children:"Frontend Developer"})," passionate about crafting"," ",i.jsx("strong",{children:"clean, efficient code"})," and ",i.jsx("strong",{children:"intuitive user experiences"}),". With 6+ months of experience, I build SPAs using"," ",i.jsx("strong",{children:"TypeScript, React, Redux, RTK Query, HTML and SCSS"})," and I'm currently expanding my toolkit with ",i.jsx("strong",{children:"Next.js"}),". ",i.jsx("br",{}),"I believe in writing"," ",i.jsx("strong",{children:"maintainable and scalable solutions"})," and actively follow industry updates to apply market-leading practices. I am also continuously improving my English language skills."]}),i.jsx(ya,{children:i.jsx(sa,{children:"More about me"})})]}),i.jsx(ma,{children:i.jsx(ga,{src:"/portfolio/assets/IMG_5490-HuPpbg4v.png",alt:"My photo"})})]})})}),ba=fn.div`
   width: 310px;
   min-height: 225px;
 
@@ -325,10 +324,10 @@ display: none;
   @media ${hn.mobile} {
     width: 297px;
   }
-`,ka=fn.div`
+`,wa=fn.div`
   margin-top: 28px;
-`,Sa=fn.h3`
-  font-family: "Inter", sans-serif;
+`,ka=fn.h3`
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 124%;
@@ -336,8 +335,8 @@ display: none;
   color: ${pn.text};
 
   margin: 26px 0 15px;
-`,xa=fn.h2`
-  font-family: "Inter", sans-serif;
+`,Sa=e=>i.jsx(ba,{children:i.jsxs(na,{direction:"column",children:[i.jsx(wa,{children:i.jsx(Hr,{iconId:e.iconId||"none",width:e.width||"80px",height:e.height||"80px",viewBox:e.viewBox||"0 0 50 50"})}),i.jsx(ka,{children:e.title})]})}),xa=fn.h2`
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 32px;
   line-height: 124%;
@@ -353,17 +352,137 @@ display: none;
   @media ${hn.laptop} {
     margin: 30px 20px;
 
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 25px;
     line-height: 115%;
     text-transform: capitalize;
   }
-`,Ea=()=>i.jsx(Ca,{children:i.jsxs(ua,{children:[i.jsx(xa,{children:"My Skills"}),i.jsxs(la,{wrap:"wrap",children:[i.jsx(ba,{iconId:"iconJS",viewBox:"0 0 24 24",title:"Java Script"}),i.jsx(ba,{iconId:"iconHtml",viewBox:"0 0 15 15",title:"HTML"}),i.jsx(ba,{iconId:"iconCss",viewBox:"0 0 15 15",title:"CSS"}),i.jsx(ba,{iconId:"iconGit",viewBox:"0 0 512 30",title:"Git / GitHub"}),i.jsx(ba,{iconId:"iconReact",viewBox:"0 0 32 32",title:"React"})]})]})}),Ca=fn.section``,Pa=e=>i.jsxs(_a,{children:[i.jsx(Na,{src:e.src,alt:""}),i.jsx(sa,{children:"push me"})]}),_a=fn.div`
+`,Ea=()=>i.jsx(Ca,{children:i.jsxs(ua,{children:[i.jsx(xa,{children:"My Skills"}),i.jsxs(na,{wrap:"wrap",children:[i.jsx(Sa,{iconId:"iconJS",viewBox:"0 0 24 24",title:"Java Script"}),i.jsx(Sa,{iconId:"iconHtml",viewBox:"0 0 15 15",title:"HTML"}),i.jsx(Sa,{iconId:"iconCss",viewBox:"0 0 15 15",title:"CSS"}),i.jsx(Sa,{iconId:"iconGit",viewBox:"0 0 512 30",title:"Git / GitHub"}),i.jsx(Sa,{iconId:"iconReact",viewBox:"0 0 32 32",title:"React"})]})]})}),Ca=fn.section``,Pa=fn.footer`
+  display: flex;
+  justify-content: center;
+`,_a=fn.div`
+  margin: 18px 10px 0;
+
+  @media ${hn.mobile} {
+    margin: 5px;
+  }
+`,Na=fn.p`
+  margin: 0;
+  padding: 18px 0;
+
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 160%;
+  text-transform: capitalize;
+
+  @media ${hn.mobile} {
+    padding: 10px 0;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 120%;
+  }
+`,za=()=>i.jsxs(Pa,{children:[i.jsx(_a,{children:i.jsx(Hr,{iconId:"copyright",width:"24",height:"24",viewBox:"0 0 24 24"})}),i.jsx(Na,{children:"2025 All Rights Reserved by Irina Lebedeva"})]});class Ta{constructor(e=0,t="Network Error"){this.status=e,this.text=t}}const La={origin:"https://api.emailjs.com",blockHeadless:!1,storageProvider:(()=>{if("undefined"!=typeof localStorage)return{get:e=>Promise.resolve(localStorage.getItem(e)),set:(e,t)=>Promise.resolve(localStorage.setItem(e,t)),remove:e=>Promise.resolve(localStorage.removeItem(e))}})()},Ra=e=>e?"string"==typeof e?{publicKey:e}:"[object Object]"===e.toString()?e:{}:{},ja=async(e,t,n={})=>{const r=await fetch(La.origin+e,{method:"POST",headers:n,body:t}),a=await r.text(),l=new Ta(r.status,a);if(r.ok)return l;throw l},Oa=(e,t,n)=>{if(!e||"string"!=typeof e)throw"The public key is required. Visit https://dashboard.emailjs.com/admin/account";if(!t||"string"!=typeof t)throw"The service ID is required. Visit https://dashboard.emailjs.com/admin";if(!n||"string"!=typeof n)throw"The template ID is required. Visit https://dashboard.emailjs.com/admin/templates"},Aa=e=>e.webdriver||!e.languages||0===e.languages.length,Ia=()=>new Ta(451,"Unavailable For Headless Browser"),Da=(e,t)=>{if((e=>!e.list?.length||!e.watchVariable)(e))return!1;((e,t)=>{if(!Array.isArray(e))throw"The BlockList list has to be an array";if("string"!=typeof t)throw"The BlockList watchVariable has to be a string"})(e.list,e.watchVariable);const n=(r=t,a=e.watchVariable,r instanceof FormData?r.get(a):r[a]);var r,a;return"string"==typeof n&&e.list.includes(n)},$a=()=>new Ta(403,"Forbidden"),Fa=async(e,t,n)=>{if(!t.throttle||!n)return!1;((e,t)=>{if("number"!=typeof e||e<0)throw"The LimitRate throttle has to be a positive number";if(t&&"string"!=typeof t)throw"The LimitRate ID has to be a non-empty string"})(t.throttle,t.id);const r=t.id||e,a=await(async(e,t,n)=>{const r=Number(await n.get(e)||0);return t-Date.now()+r})(r,t.throttle,n);return a>0||(await n.set(r,Date.now().toString()),!1)},Ma=()=>new Ta(429,"Too Many Requests"),Ua=async(e,t,n,r)=>{const a=Ra(r),l=a.publicKey||La.publicKey,o=a.blockHeadless||La.blockHeadless,i=La.storageProvider||a.storageProvider,u={...La.blockList,...a.blockList},s={...La.limitRate,...a.limitRate};if(o&&Aa(navigator))return Promise.reject(Ia());const c=(e=>"string"==typeof e?document.querySelector(e):e)(n);Oa(l,e,t),(e=>{if(!e||"FORM"!==e.nodeName)throw"The 3rd parameter is expected to be the HTML form element or the style selector of the form"})(c);const f=new FormData(c);return Da(u,f)?Promise.reject($a()):await Fa(location.pathname,s,i)?Promise.reject(Ma()):(f.append("lib_version","4.4.1"),f.append("service_id",e),f.append("template_id",t),f.append("user_id",l),ja("/api/v1.0/email/send-form",f))},Ba=fn.div``,Ha=fn.form`
+  display: flex;
+  flex-direction: column;
+
+  padding: 40px;
+
+  border-radius: 2px;
+  background-color: ${pn.secondaryBg};
+
+  @media ${hn.mobile} {
+    padding: 30px;
+  }
+
+  @media ${hn.tablet} {
+    padding: 25px;
+  }
+
+  textarea {
+    resize: none;
+    width: 350px;
+    height: 210px;
+
+    @media ${hn.tablet} {
+      width: 250px;
+      height: 110px;
+    }
+  }
+`,Wa=fn.input`
+  width: 350px;
+  padding: 10px;
+  margin: 5px;
+
+  color: white;
+  background-color: ${pn.primaryBg};
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 160%;
+
+  border: 2px solid gray;
+  border-radius: 2px;
+
+  &:focus-visible {
+    border-color: transparent;
+    outline: 2px solid ${pn.accent};
+  }
+
+  @media ${hn.tablet} {
+    width: 250px;
+    padding: 5px;
+  }
+`,Va=fn.div`
+  display: flex;
+  gap: 20px;
+
+  margin-top: 20px;
+
+  @media ${hn.mobile} {
+    flex-direction: column;
+    gap: 10px;
+
+    margin: 20px 0;
+  }
+
+  @media ${hn.tablet} {
+    flex-direction: column;
+
+    margin: 10px 0;
+  }
+`,qa=()=>{const e=T.useRef(null);return i.jsxs(Ba,{children:[i.jsx(xa,{children:"Leave me your message"}),i.jsxs(Ha,{ref:e,onSubmit:t=>{t.preventDefault(),e.current&&(Ua("service_8eiunrk","template_d126p5g",e.current,{publicKey:"khPxos3Q0z1EeUFmV"}).then(()=>{console.log("SUCCESS!")},e=>{console.log("FAILED...",e.text)}),t.currentTarget.reset())},children:[i.jsx(Wa,{name:"name",placeholder:"Your Full Name",required:!0}),i.jsx(Wa,{name:"email",placeholder:"Your Email",required:!0}),i.jsx(Wa,{name:"subject",placeholder:"Subject"}),i.jsx(Wa,{as:"textarea",id:"textField",name:"message",placeholder:"Your Message",required:!0}),i.jsxs(Va,{children:[i.jsx(sa,{type:"submit",children:"Send Message"}),i.jsx(sa,{type:"reset",children:"Reset"})]})]})]})},Qa=[{href:"https://github.com/EarlMefisto",iconId:"git"},{href:"https://t.me/earlmefisto",iconId:"telegram"},{href:"https://www.linkedin.com/in/earlmefisto/",iconId:"linkedin"}],Ya=fn.div``,Ga=fn.ul`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`,Ka=fn.li``,Xa=fn.a`
+  :hover {
+    transition: all 1s ease;
+    transform: scale(1.2);
+  }
+`,Ja=fn.div``,Za=()=>i.jsxs(Ya,{children:[i.jsx(xa,{children:"Works Contacts"}),i.jsx(Ga,{children:Qa.map(({href:e,iconId:t})=>i.jsx(Ka,{children:i.jsx(Xa,{href:e,target:"_blank",rel:"noopener noreferrer",children:i.jsx(Hr,{iconId:t,viewBox:"0 0 70 60",width:"60",height:"70"})})},t))}),i.jsx(xa,{children:"My Location"}),i.jsx(Ja,{children:i.jsx("iframe",{src:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d301014.5093529799!2d27.264429562590674!3d53.88419040449878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcfd35b1e6ad3%3A0xb61b853ddb570d9!2z0JzQuNC90YHQuiwg0JzQuNC90YHQutCw0Y8g0L7QsdC70LDRgdGC0Yw!5e0!3m2!1sru!2sby!4v1732564049506!5m2!1sru!2sby",width:"100%",height:"300px",loading:"lazy"})})]}),el=()=>i.jsx(tl,{children:i.jsx(ua,{children:i.jsxs(na,{gap:"10px",children:[i.jsx(qa,{}),i.jsx(Za,{})]})})}),tl=fn.section``,nl=fn.nav`
+  ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 37px;
+
+    max-width: 606px;
+    width: 100%;
+
+    margin-top: 25px;
+    margin-bottom: 50px;
+  }
+`,rl=fn.ul``,al=fn.li``,ll=fn.a`
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  text-transform: capitalize;
+`,ol=e=>i.jsx(nl,{children:i.jsx(rl,{children:e.menuItems.map((e,t)=>i.jsx(al,{children:i.jsx(ll,{href:"",children:e})},t))})}),il=fn.div`
   position: relative;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     right: 0;
@@ -408,7 +527,7 @@ display: none;
       }
     }
   }
-`,Na=fn.img`
+`,ul=fn.img`
   max-width: 310px;
   min-height: 310px;
   object-fit: cover;
@@ -417,110 +536,4 @@ display: none;
     width: 100%;
     object-fit: cover;
   }
-`,za=e=>i.jsx(Ta,{children:i.jsx(La,{children:e.menuItems.map((e,t)=>i.jsx(Ra,{children:i.jsx(ja,{href:"",children:e})},t))})}),Ta=fn.nav`
-  ul {
-    display: flex;
-    justify-content: space-between;
-    gap: 37px;
-
-    max-width: 606px;
-    width: 100%;
-
-    margin-top: 25px;
-    margin-bottom: 50px;
-  }
-`,La=fn.ul``,Ra=fn.li``,ja=fn.a`
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  font-size: 18px;
-  text-transform: capitalize;
-`,Oa=["All","Layout","App","Project"],Aa=()=>i.jsx(Ia,{children:i.jsxs(ua,{children:[i.jsx(xa,{children:"My Works"}),i.jsx(la,{children:i.jsx(za,{menuItems:Oa})}),i.jsxs(la,{wrap:"wrap",children:[i.jsx(Da,{children:i.jsx($a,{children:i.jsx(Fa,{href:"https://earlmefisto.github.io/desert/",children:i.jsx(Pa,{src:"/portfolio/assets/0cbd17e4381497547009ce81acc4eee3-C8bsoPG_.webp"})})})}),i.jsx(Da,{children:i.jsx($a,{children:i.jsx(Fa,{children:i.jsx(Pa,{src:"/portfolio/assets/Alcohol_use-main-DJVLMcVC.webp"})})})}),i.jsx(Da,{children:i.jsxs($a,{children:[i.jsx(Fa,{}),i.jsx(Pa,{src:"/portfolio/assets/photo_2024-11-27_16-55-32-CIsJnewL.webp"})]})})]})]})}),Ia=fn.section``,Da=fn.ul``,$a=fn.li``,Fa=fn.a``,Ma=()=>i.jsxs(la,{children:[i.jsx(Ua,{children:i.jsx(Hr,{iconId:"copyright",width:"24px",height:"24px",viewBox:"0 0 24px 24px"})}),i.jsx(Ba,{children:"2025 All Rights Reserved by Irina Lebedeva"})]}),Ua=fn.div`
-  margin: 18px 15px 0;
-`,Ba=fn.small`
-  padding: 18px 0;
-
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 160%;
-  text-transform: capitalize;
-`;class Ha{constructor(e=0,t="Network Error"){this.status=e,this.text=t}}const Wa={origin:"https://api.emailjs.com",blockHeadless:!1,storageProvider:(()=>{if("undefined"!=typeof localStorage)return{get:e=>Promise.resolve(localStorage.getItem(e)),set:(e,t)=>Promise.resolve(localStorage.setItem(e,t)),remove:e=>Promise.resolve(localStorage.removeItem(e))}})()},Va=e=>e?"string"==typeof e?{publicKey:e}:"[object Object]"===e.toString()?e:{}:{},qa=async(e,t,n={})=>{const r=await fetch(Wa.origin+e,{method:"POST",headers:n,body:t}),a=await r.text(),l=new Ha(r.status,a);if(r.ok)return l;throw l},Qa=(e,t,n)=>{if(!e||"string"!=typeof e)throw"The public key is required. Visit https://dashboard.emailjs.com/admin/account";if(!t||"string"!=typeof t)throw"The service ID is required. Visit https://dashboard.emailjs.com/admin";if(!n||"string"!=typeof n)throw"The template ID is required. Visit https://dashboard.emailjs.com/admin/templates"},Ya=e=>e.webdriver||!e.languages||0===e.languages.length,Ga=()=>new Ha(451,"Unavailable For Headless Browser"),Ka=(e,t)=>{if((e=>!e.list?.length||!e.watchVariable)(e))return!1;((e,t)=>{if(!Array.isArray(e))throw"The BlockList list has to be an array";if("string"!=typeof t)throw"The BlockList watchVariable has to be a string"})(e.list,e.watchVariable);const n=(r=t,a=e.watchVariable,r instanceof FormData?r.get(a):r[a]);var r,a;return"string"==typeof n&&e.list.includes(n)},Xa=()=>new Ha(403,"Forbidden"),Ja=async(e,t,n)=>{if(!t.throttle||!n)return!1;((e,t)=>{if("number"!=typeof e||e<0)throw"The LimitRate throttle has to be a positive number";if(t&&"string"!=typeof t)throw"The LimitRate ID has to be a non-empty string"})(t.throttle,t.id);const r=t.id||e,a=await(async(e,t,n)=>{const r=Number(await n.get(e)||0);return t-Date.now()+r})(r,t.throttle,n);return a>0||(await n.set(r,Date.now().toString()),!1)},Za=()=>new Ha(429,"Too Many Requests"),el=async(e,t,n,r)=>{const a=Va(r),l=a.publicKey||Wa.publicKey,o=a.blockHeadless||Wa.blockHeadless,i=Wa.storageProvider||a.storageProvider,u={...Wa.blockList,...a.blockList},s={...Wa.limitRate,...a.limitRate};if(o&&Ya(navigator))return Promise.reject(Ga());const c=(e=>"string"==typeof e?document.querySelector(e):e)(n);Qa(l,e,t),(e=>{if(!e||"FORM"!==e.nodeName)throw"The 3rd parameter is expected to be the HTML form element or the style selector of the form"})(c);const f=new FormData(c);return Ka(u,f)?Promise.reject(Xa()):await Ja(location.pathname,s,i)?Promise.reject(Za()):(f.append("lib_version","4.4.1"),f.append("service_id",e),f.append("template_id",t),f.append("user_id",l),qa("/api/v1.0/email/send-form",f))},tl=fn.div``,nl=fn.form`
-  display: flex;
-  flex-direction: column;
-
-  padding: 40px;
-
-  border-radius: 2px;
-  background-color: ${pn.secondaryBg};
-
-  @media ${hn.mobile} {
-    padding: 30px;
-  }
-
-  @media ${hn.tablet} {
-    padding: 25px;
-  }
-
-  textarea {
-    resize: none;
-    width: 350px;
-    height: 210px;
-
-    @media ${hn.tablet} {
-      width: 250px;
-      height: 110px;
-    }
-  }
-`,rl=fn.input`
-  width: 350px;
-  padding: 10px;
-  margin: 5px;
-
-  color: white;
-  background-color: ${pn.primaryBg};
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 160%;
-
-  border: 2px solid gray;
-  border-radius: 2px;
-
-  &:focus-visible {
-    border-color: transparent;
-    outline: 2px solid ${pn.accent};
-  }
-
-  @media ${hn.tablet} {
-    width: 250px;
-    padding: 5px;
-  }
-`,al=fn.div`
-  display: flex;
-  gap: 20px;
-
-  margin-top: 20px;
-
-  
-  @media ${hn.mobile} {
-    flex-direction: column;
-    gap: 10px;
-
-    margin: 20px 0;
-  }
-
-  @media ${hn.tablet} {
-    flex-direction: column;
-
-    margin: 10px 0;
-  }
-`,ll=()=>{const e=T.useRef(null);return i.jsxs(tl,{children:[i.jsx(xa,{children:"Leave me your message"}),i.jsxs(nl,{ref:e,onSubmit:t=>{t.preventDefault(),e.current&&(el("service_8eiunrk","template_d126p5g",e.current,{publicKey:"khPxos3Q0z1EeUFmV"}).then(()=>{console.log("SUCCESS!")},e=>{console.log("FAILED...",e.text)}),t.currentTarget.reset())},children:[i.jsx(rl,{name:"name",placeholder:"Your Full Name",required:!0}),i.jsx(rl,{name:"email",placeholder:"Your Email",required:!0}),i.jsx(rl,{name:"subject",placeholder:"Subject"}),i.jsx(rl,{as:"textarea",id:"textField",name:"message",placeholder:"Your Message",required:!0}),i.jsxs(al,{children:[i.jsx(sa,{type:"submit",children:"Send Message"}),i.jsx(sa,{type:"reset",children:"Reset"})]})]})]})},ol=[{href:"https://github.com/EarlMefisto",iconId:"git"},{href:"https://t.me/earlmefisto",iconId:"telegram"},{href:"https://www.linkedin.com/in/earlmefisto/",iconId:"linkedin"}],il=fn.div``,ul=fn.ul`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`,sl=fn.li``,cl=fn.a`
-  :hover {
-    transition: all 1s ease;
-    transform: scale(1.2);
-  }
-`,fl=fn.div``,dl=()=>i.jsxs(il,{children:[i.jsx(xa,{children:"Works Contacts"}),i.jsx(ul,{children:ol.map(({href:e,iconId:t})=>i.jsx(sl,{children:i.jsx(cl,{href:e,target:"_blank",rel:"noopener noreferrer",children:i.jsx(Hr,{iconId:t,viewBox:"0 0 70 60",width:"60",height:"70"})})},t))}),i.jsx(xa,{children:"My Location"}),i.jsx(fl,{children:i.jsx("iframe",{src:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d301014.5093529799!2d27.264429562590674!3d53.88419040449878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcfd35b1e6ad3%3A0xb61b853ddb570d9!2z0JzQuNC90YHQuiwg0JzQuNC90YHQutCw0Y8g0L7QsdC70LDRgdGC0Yw!5e0!3m2!1sru!2sby!4v1732564049506!5m2!1sru!2sby",width:"100%",height:"300px",loading:"lazy"})})]}),pl=()=>i.jsx(hl,{children:i.jsx(ua,{children:i.jsxs(la,{gap:"10px",children:[i.jsx(ll,{}),i.jsx(dl,{})]})})}),hl=fn.section``;function ml(){return i.jsxs("div",{children:[i.jsx(oa,{}),i.jsx(ca,{}),i.jsx(Ea,{}),i.jsx(Aa,{}),i.jsx(pl,{}),i.jsx(Ma,{})]})}_.createRoot(document.getElementById("root")).render(i.jsx(Dr,{children:i.jsxs(T.StrictMode,{children:[i.jsx(mn,{}),i.jsx(ml,{})]})}));
+`,sl=e=>i.jsxs(il,{children:[i.jsx(ul,{src:e.src,alt:""}),i.jsx(sa,{children:"push me"})]}),cl=fn.section``,fl=fn.ul``,dl=fn.li``,pl=fn.a``,hl=["All","Layout","App"],ml=()=>i.jsx(cl,{children:i.jsxs(ua,{children:[i.jsx(xa,{children:"My Works"}),i.jsx(na,{children:i.jsx(ol,{menuItems:hl})}),i.jsxs(na,{wrap:"wrap",children:[i.jsx(fl,{children:i.jsx(dl,{children:i.jsx(pl,{href:"https://earlmefisto.github.io/desert/",children:i.jsx(sl,{src:"/portfolio/assets/0cbd17e4381497547009ce81acc4eee3-C8bsoPG_.webp"})})})}),i.jsx(fl,{children:i.jsx(dl,{children:i.jsx(pl,{children:i.jsx(sl,{src:"/portfolio/assets/Alcohol_use-main-DJVLMcVC.webp"})})})}),i.jsx(fl,{children:i.jsx(dl,{children:i.jsx(sl,{src:"/portfolio/assets/photo_2024-11-27_16-55-32-CIsJnewL.webp"})})})]})]})});function gl(){return i.jsxs("div",{children:[i.jsx(ia,{}),i.jsx(va,{}),i.jsx(Ea,{}),i.jsx(ml,{}),i.jsx(el,{}),i.jsx(za,{})]})}_.createRoot(document.getElementById("root")).render(i.jsx(Dr,{children:i.jsxs(T.StrictMode,{children:[i.jsx(mn,{}),i.jsx(gl,{})]})}));
