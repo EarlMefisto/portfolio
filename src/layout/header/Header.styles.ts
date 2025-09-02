@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { thems } from '../../styles/Thems'
 
-
 export const StyledHeader = styled.header`
   padding: 21px;
   min-height: 650px;

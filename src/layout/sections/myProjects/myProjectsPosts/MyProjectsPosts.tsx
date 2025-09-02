@@ -1,4 +1,3 @@
-
 import { Button } from '../../../../shared/components/Button'
 import { PostsImage, PostsWrapper } from './MyProjectsPosts.styles'
 

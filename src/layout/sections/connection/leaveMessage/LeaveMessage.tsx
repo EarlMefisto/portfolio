@@ -13,17 +13,20 @@ export const LeaveMessage = () => {
     if (!form.current) return
 
     emailjs
-      .sendForm('service_8eiunrk', 'template_d126p5g', form.current, {
-        publicKey: 'khPxos3Q0z1EeUFmV',
-      })
-      .then(
-        () => {
-          console.log('SUCCESS!')
-        },
-        error => {
-          console.log('FAILED...', error.text)
+      .sendForm(
+        import.meta.env.VITE_EMAIL_JS_SERVICE_ID,
+        import.meta.env.VITE_EMAIL_JS_TEMPLATE_ID,
+        form.current,
+        {
+          publicKey: import.meta.env.VITE_EMAIL_JS_PUBLIC_KEY,
         }
       )
+      .then(() => {
+        alert('SUCCESS!')
+      })
+      .catch(_error => {
+        alert('FAILED...')
+      })
 
     e.currentTarget.reset()
   }

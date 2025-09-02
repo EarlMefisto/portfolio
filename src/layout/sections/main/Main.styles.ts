@@ -7,10 +7,15 @@ export const StyledMain = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 30px;
-  gap: 25px;
+  width: 100%;
+  gap: 40px;
   background-color: ${thems.colors.secondaryBg};
+
+  @media ${thems.media.mobile} {
+    padding: 30px;
+    width: auto;
+    gap: 20px;
+  }
 `
 
 export const StyledTitle = styled.div`
@@ -18,6 +23,7 @@ export const StyledTitle = styled.div`
   font-weight: 700;
   font-size: 32px;
   color: ${thems.colors.title};
+  text-align: center;
 
   span {
     color: ${thems.colors.accent};
@@ -26,28 +32,24 @@ export const StyledTitle = styled.div`
 
 export const Title = styled.h1`
   line-height: 124%;
-
-  @media ${thems.media.tablet} {
-    margin: 0 0 0 20px;
-  }
 `
 
 export const Text = styled.p`
-  display: block;
   max-width: 435px;
+  width: 100%;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 150%;
+  text-align: justify;
+  hyphens: auto;
 
   strong {
     color: ${thems.colors.title};
   }
 
   @media ${thems.media.mobile} {
-    max-width: 281px;
-
-    font-size: 16px;
+    font-size: 14px;
   }
 `
 
@@ -83,7 +85,7 @@ export const Photo = styled.img`
 export const ButtonWrapper = styled.div`
   @media ${thems.media.mobile} {
     button {
-      height: 50px;
+      height: 35px;
     }
   }
 `

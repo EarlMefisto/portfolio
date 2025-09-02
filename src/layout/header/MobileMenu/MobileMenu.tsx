@@ -1,4 +1,3 @@
-
 import { Icon } from '../../../shared/components/Icon'
 import { BurgerButton, Item, Link, List, PopUp, StyledMobileMenu } from './MobileMenu.styles'
 

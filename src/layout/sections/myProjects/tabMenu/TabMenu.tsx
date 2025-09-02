@@ -1,4 +1,4 @@
-import { Item, Link, List, StyledTabMenu } from "./TabMenu.styles"
+import { Item, Link, List, StyledTabMenu } from './TabMenu.styles'
 
 export const TabMenu = (props: { menuItems: Array<string> }) => {
   return (
@@ -15,4 +15,3 @@ export const TabMenu = (props: { menuItems: Array<string> }) => {
     </StyledTabMenu>
   )
 }
-

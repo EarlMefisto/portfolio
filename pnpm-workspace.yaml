@@ -1,3 +1,6 @@
+ignoredBuiltDependencies:
+  - '@tsparticles/engine'
+
 onlyBuiltDependencies:
   - '@swc/core'
   - esbuild

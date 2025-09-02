@@ -1,4 +1,3 @@
-
 import { Icon } from '../../../shared/components/Icon'
 import { Item, Link, List, StyledHeaderMenu } from './HeaderMenu.styles'
 
@@ -40,4 +39,3 @@ export const HeaderMenu = () => {
     </StyledHeaderMenu>
   )
 }
-

@@ -14,11 +14,15 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@tsparticles/engine": "^3.9.1",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.9.1",
     "path": "^0.12.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.3",
     "styled-components": "^6.1.19",
+    "tsparticles": "^3.9.1",
     "web-vitals": "^5.1.0"
   },
   "devDependencies": {

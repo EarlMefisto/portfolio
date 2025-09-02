@@ -1,4 +1,3 @@
-
 import { FlexWrapper } from '../../../../shared/components/FlexWrapper'
 import { Icon } from '../../../../shared/components/Icon'
 import { IconWrapper, StyledSkills, Titile } from './Skills.styles'
@@ -53,4 +52,3 @@ export const Skills = (props: ServicePropsType) => {
     </StyledSkills>
   )
 }
-
