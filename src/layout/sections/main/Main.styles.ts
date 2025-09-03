@@ -88,4 +88,9 @@ export const ButtonWrapper = styled.div`
       height: 35px;
     }
   }
+
+  & button {
+    font-size: 14px;
+    width: 185px;
+  }
 `

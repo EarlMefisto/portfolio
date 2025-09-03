@@ -115,8 +115,8 @@ export const Particle = () => {
           random: true,
           animation: {
             enable: true,
-            speed: 3
-          }
+            speed: 3,
+          },
         },
       },
       pauseOnBlur: true,
