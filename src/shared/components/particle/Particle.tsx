@@ -129,5 +129,19 @@ export const Particle = () => {
     return null
   }
 
-  return <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
+  return (
+    <Particles
+      id="tsparticles"
+      particlesLoaded={particlesLoaded}
+      options={options}
+      style={{
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100vw',
+        height: '100vh',
+        zIndex: '0',
+      }}
+    />
+  )
 }

@@ -16,6 +16,12 @@ export const StyledMain = styled.div`
     width: auto;
     gap: 20px;
   }
+
+  @media ${thems.media.laptop} {
+    padding: 20px;
+    width: auto;
+    gap: 20px;
+  }
 `
 
 export const StyledTitle = styled.div`
@@ -73,6 +79,16 @@ export const PhotoWrapper = styled.div`
     @media ${thems.media.tablet} {
       border: none;
     }
+
+    @media ${thems.media.laptop} {
+      top: -20px;
+      left: 10px;
+      bottom: 5px;
+    }
+  }
+
+  @media ${thems.media.laptop} {
+    margin: 20px;
   }
 `
 
@@ -83,14 +99,7 @@ export const Photo = styled.img`
 `
 
 export const ButtonWrapper = styled.div`
-  @media ${thems.media.mobile} {
-    button {
-      height: 35px;
-    }
-  }
-
   & button {
     font-size: 14px;
-    width: 185px;
   }
 `

@@ -1,7 +1,7 @@
 import { TabMenu } from './tabMenu/TabMenu'
 import postImage1 from '../../../assets/img/0cbd17e4381497547009ce81acc4eee3.webp'
 import postImage2 from '../../../assets/img/Alcohol_use-main.webp'
-import postImage3 from '../../../assets/img/photo_2024-11-27_16-55-32.webp'
+import postImage3 from '../../../assets/img/roulet.webp'
 import { Container } from '../../../shared/components/Container'
 import { SectionTitle } from '../../../shared/components/SectionTitile'
 import { FlexWrapper } from '../../../shared/components/FlexWrapper'

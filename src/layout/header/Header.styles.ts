@@ -15,4 +15,12 @@ export const StyledHeader = styled.header`
     top: 0;
     right: 50px;
   }
+
+  @media ${thems.media.laptop} {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 `

@@ -1,40 +1,18 @@
 import { Icon } from '../../../shared/components/Icon'
+import { MENU_ICON } from '../../../shared/constants/menuIcon'
 import { Item, Link, List, StyledHeaderMenu } from './HeaderMenu.styles'
 
 export const HeaderMenu = () => {
   return (
     <StyledHeaderMenu>
       <List>
-        <Item>
-          <Link href="">
-            <Icon width={'30'} height={'30'} viewBox={'0 0 18 18'} iconId={'home'} />
-          </Link>
-        </Item>
-        <Item>
-          <Link href="">
-            <Icon width={'30'} height={'30'} viewBox={'0 0 18 18'} iconId={'service'} />
-          </Link>
-        </Item>
-        <Item>
-          <Link href="">
-            <Icon width={'30'} height={'30'} viewBox={'0 0 18 18'} iconId={'works'} />
-          </Link>
-        </Item>
-        <Item>
-          <Link href="">
-            <Icon width={'30'} height={'30'} viewBox={'0 0 18 18'} iconId={'message'} />
-          </Link>
-        </Item>
-        <Item>
-          <Link href="">
-            <Icon width={'30'} height={'30'} viewBox={'0 0 18 18'} iconId={'contact'} />
-          </Link>
-        </Item>
-        <Item>
-          <Link href="">
-            <Icon width={'30'} height={'30'} viewBox={'0 0 18 18'} iconId={'location'} />
-          </Link>
-        </Item>
+        {MENU_ICON.map(({ iconId }) => (
+          <Item key={iconId}>
+            <Link>
+              <Icon iconId={iconId} width={'30'} height={'30'} viewBox={'0 0 18 18'} />
+            </Link>
+          </Item>
+        ))}
       </List>
     </StyledHeaderMenu>
   )

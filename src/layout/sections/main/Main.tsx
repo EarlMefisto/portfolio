@@ -14,6 +14,7 @@ import {
 } from './Main.styles'
 import { Modal } from '../../../shared/components/modal/Modal'
 import { useState } from 'react'
+import { AboutMe } from './aboutMe/aboutMe'
 
 export const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -47,7 +48,7 @@ export const Main = () => {
               my English language skills.
             </Text>
             <ButtonWrapper>
-              <Button onClick={openModal}>a little bit about me</Button>
+              <Button onClick={openModal}>about me</Button>
             </ButtonWrapper>
           </StyledMain>
           <PhotoWrapper>
@@ -56,7 +57,7 @@ export const Main = () => {
         </FlexWrapper>
       </Container>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <Text>Тут будет обо мне</Text>
+        <AboutMe />
       </Modal>
     </GlobalStyledMain>
   )
