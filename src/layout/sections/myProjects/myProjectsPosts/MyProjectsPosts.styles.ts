@@ -54,12 +54,12 @@ export const PostsWrapper = styled.div`
 `
 
 export const PostsImage = styled.img`
+  width: 100%;
   max-width: 310px;
-  min-height: 310px;
+  height: 310px;
   object-fit: cover;
 
   @media ${thems.media.laptop} {
-    width: 100%;
     object-fit: cover;
   }
 `

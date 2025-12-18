@@ -1,12 +1,10 @@
 import { TabMenu } from './tabMenu/TabMenu'
-import postImage1 from '../../../assets/img/0cbd17e4381497547009ce81acc4eee3.webp'
-import postImage2 from '../../../assets/img/Alcohol_use-main.webp'
-import postImage3 from '../../../assets/img/roulet.webp'
 import { Container } from '../../../shared/components/Container'
 import { SectionTitle } from '../../../shared/components/SectionTitile'
 import { FlexWrapper } from '../../../shared/components/FlexWrapper'
 import { MyProjectsPosts } from './myProjectsPosts/MyProjectsPosts'
 import { Item, Link, List, StyledMyProjects } from './MyProjects.styles'
+import { PROJECTS } from '../../../shared/constants/projects'
 
 const ProjectsItems = ['All', 'Layout', 'App']
 
@@ -18,25 +16,15 @@ export const MyProjects = () => {
         <FlexWrapper>
           <TabMenu menuItems={ProjectsItems} />
         </FlexWrapper>
-        <FlexWrapper wrap={'wrap'}>
+        <FlexWrapper align={'center'}>
           <List>
-            <Item>
-              <Link href={'https://earlmefisto.github.io/desert/'}>
-                <MyProjectsPosts src={postImage1} />
-              </Link>
-            </Item>
-          </List>
-          <List>
-            <Item>
-              <Link>
-                <MyProjectsPosts src={postImage2} />
-              </Link>
-            </Item>
-          </List>
-          <List>
-            <Item>
-              <MyProjectsPosts src={postImage3} />
-            </Item>
+            {PROJECTS.map(({ href, projectId, postImageId }) => (
+              <Item key={projectId}>
+                <Link href={href} target="_blank" rel="noopener noreferrer">
+                  <MyProjectsPosts src={postImageId} />
+                </Link>
+              </Item>
+            ))}
           </List>
         </FlexWrapper>
       </Container>
