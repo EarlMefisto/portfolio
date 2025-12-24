@@ -3,7 +3,10 @@ import { thems } from '../../../../styles/Thems'
 import { Button } from '../../../../shared/components/Button'
 
 export const PostsWrapper = styled.div`
+  width: 100%;
+  height: 100%;
   position: relative;
+  overflow: hidden;
 
   &::before {
     content: '';
@@ -55,9 +58,9 @@ export const PostsWrapper = styled.div`
 
 export const PostsImage = styled.img`
   width: 100%;
-  max-width: 310px;
-  height: 310px;
+  height: 100%;
   object-fit: cover;
+  display: block;
 
   @media ${thems.media.laptop} {
     object-fit: cover;

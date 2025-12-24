@@ -16,7 +16,7 @@ export const MyProjects = () => {
         <FlexWrapper>
           <TabMenu menuItems={ProjectsItems} />
         </FlexWrapper>
-        <FlexWrapper align={'center'}>
+        <FlexWrapper >
           <List>
             {PROJECTS.map(({ href, projectId, postImageId }) => (
               <Item key={projectId}>
