@@ -12,15 +12,16 @@ export const Outside = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 999999;
+  overflow: hidden;
 `
 
 export const ModalWindow = styled.div`
   position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: 95vw;
+  max-height: 95vh;
   background-color: ${thems.colors.secondaryBg};
   border-radius: 2px;
-  padding: 24px;
+  padding: 25px;
   overflow-y: auto;
   animation: appear 0.5s ease-out forwards;
 

@@ -63,6 +63,5 @@ export const PostsImage = styled.img`
   display: block;
 
   @media ${thems.media.laptop} {
-    object-fit: cover;
   }
 `

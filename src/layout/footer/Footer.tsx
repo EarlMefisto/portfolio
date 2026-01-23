@@ -7,7 +7,7 @@ export const Footer = () => {
       <IconWrapper>
         <Icon iconId={'copyright'} width={'24'} height={'24'} viewBox={'0 0 24 24'} />
       </IconWrapper>
-      <Copyright>2025 All Rights Reserved by Irina Lebedeva</Copyright>
+      <Copyright>2026 All Rights Reserved by Irina Lebedeva</Copyright>
     </StyledFooter>
   )
 }

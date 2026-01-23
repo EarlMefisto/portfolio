@@ -10,7 +10,7 @@ export const StyledTabMenu = styled.nav`
     width: 100%;
 
     margin-top: 25px;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
   }
 `
 

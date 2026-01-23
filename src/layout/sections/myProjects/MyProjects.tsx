@@ -6,7 +6,7 @@ import { MyProjectsPosts } from './myProjectsPosts/MyProjectsPosts'
 import { Item, Link, List, StyledMyProjects } from './MyProjects.styles'
 import { PROJECTS } from '../../../shared/constants/projects'
 
-const ProjectsItems = ['All', 'Layout', 'App']
+const ProjectsItems = ['All', 'Layout', 'App', 'Web']
 
 export const MyProjects = () => {
   return (
