@@ -6,25 +6,7 @@ import { MyProjectsPosts } from './myProjectsPosts/MyProjectsPosts'
 import { Item, Link, List, StyledMyProjects } from './MyProjects.styles'
 import { PROJECTS } from '../../../shared/constants/projects'
 import { useState } from 'react'
-
-const tabsItems: Array<{ status: tabStatusType; title: string }> = [
-  {
-    title: 'All',
-    status: 'all',
-  },
-  {
-    title: 'Landing Page',
-    status: 'landing',
-  },
-  {
-    title: 'App',
-    status: 'app',
-  },
-  {
-    title: 'Web',
-    status: 'web',
-  },
-]
+import { TABS_iTEMS } from '../../../shared/constants/tabsItems'
 
 export const MyProjects = () => {
   const [currentFilterStatus, setCurrentFilterStatus] = useState('all')
@@ -38,12 +20,12 @@ export const MyProjects = () => {
   }
 
   return (
-    <StyledMyProjects>
+    <StyledMyProjects id={'projects'}>
       <Container>
         <SectionTitle>My Works</SectionTitle>
         <FlexWrapper>
           <TabMenu
-            tabsItems={tabsItems}
+            tabsItems={TABS_iTEMS}
             changeFilterStatus={changeFilterStatus}
             currentFilterStatus={currentFilterStatus}
           />

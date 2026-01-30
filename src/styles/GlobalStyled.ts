@@ -11,13 +11,11 @@ export const GlobalStyled = createGlobalStyle`
 
 body {
   margin: 0;
-
   font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   color: ${thems.colors.text};
   background-color: ${thems.colors.primaryBg};
 }
@@ -34,7 +32,6 @@ a:hover {
 
 ul {
     list-style: none;
-    
     padding: 0;
 }
 
@@ -43,7 +40,6 @@ button {
     border: transparent;
     border-radius: 5px;
     background-color: ${thems.colors.accent};
-
     cursor: pointer;
     color: ${thems.colors.title};
 }

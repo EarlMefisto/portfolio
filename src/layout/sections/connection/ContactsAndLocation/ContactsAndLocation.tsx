@@ -7,7 +7,7 @@ export const ContactsAndLocation = () => {
   return (
     <Section>
       <SectionTitle>Works Contacts</SectionTitle>
-      <List>
+      <List id={'contacts'}>
         {SOCIAL_LINKS.map(({ href, iconId }) => (
           <Item key={iconId}>
             <Link href={href} target="_blank" rel="noopener noreferrer">
@@ -18,7 +18,7 @@ export const ContactsAndLocation = () => {
       </List>
 
       <SectionTitle>My Location</SectionTitle>
-      <Map>
+      <Map id={'location'}>
         <iframe src={MAP_URL} width={'100%'} height={'300px'} loading="lazy"></iframe>
       </Map>
     </Section>

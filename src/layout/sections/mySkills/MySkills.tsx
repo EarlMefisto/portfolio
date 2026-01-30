@@ -6,7 +6,7 @@ import { FlexWrapper } from '../../../shared/components/FlexWrapper'
 
 export const MySkills = () => {
   return (
-    <StyledMySkills>
+    <StyledMySkills id={'skills'}>
       <Container>
         <SectionTitle>My Skills</SectionTitle>
         <FlexWrapper wrap={'wrap'}>

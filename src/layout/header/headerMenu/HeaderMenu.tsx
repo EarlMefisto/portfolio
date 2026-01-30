@@ -1,16 +1,16 @@
 import { Icon } from '../../../shared/components/Icon'
 import { MENU_ICON } from '../../../shared/constants/menuIcon'
-import { Item, Link, List, StyledHeaderMenu } from './HeaderMenu.styles'
+import { Item, List, MenuLink, StyledHeaderMenu } from './HeaderMenu.styles'
 
 export const HeaderMenu = () => {
   return (
     <StyledHeaderMenu>
       <List>
-        {MENU_ICON.map(({ iconId }) => (
+        {MENU_ICON.map(({ id, iconId }) => (
           <Item key={iconId}>
-            <Link>
+            <MenuLink activeClass="active" to={id} smooth={true} spy={true}>
               <Icon iconId={iconId} width={'30'} height={'30'} viewBox={'0 0 18 18'} />
-            </Link>
+            </MenuLink>
           </Item>
         ))}
       </List>

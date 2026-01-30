@@ -32,7 +32,7 @@ export const LeaveMessage = () => {
   }
 
   return (
-    <Section>
+    <Section id={'message'}>
       <SectionTitle>Leave me your message</SectionTitle>
       <Form ref={form} onSubmit={sendEmail}>
         <Field name={'name'} placeholder={'Your Full Name'} required />

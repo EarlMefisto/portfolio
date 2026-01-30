@@ -1,4 +1,5 @@
 import postImage1 from '@/assets/img/0cbd17e4381497547009ce81acc4eee3.webp'
+import postImage2 from '@/assets/img/dnf.webp'
 import postImage4 from '@/assets/img/roulet.webp'
 import postImage5 from '@/assets/img/stone.webp'
 
@@ -9,12 +10,12 @@ export const PROJECTS = [
     postImageId: postImage1,
     type: 'landing',
   },
-  //   {
-  //     href: 'https://earlmefisto.github.io/DNF/',
-  //     projectId: 'todolist',
-  //     postImageId: postImage2,
-  //     type: 'app,
-  //   },
+  {
+    href: 'https://earlmefisto.github.io/DNF/',
+    projectId: 'todolist',
+    postImageId: postImage2,
+    type: 'app',
+  },
   //   {
   //     projectId: 'inctagram',
   //     postImageId: postImage3,

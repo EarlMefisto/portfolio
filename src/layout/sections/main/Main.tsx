@@ -28,7 +28,7 @@ export const Main = () => {
   }
 
   return (
-    <GlobalStyledMain>
+    <GlobalStyledMain id={'home'}>
       <Container>
         <FlexWrapper>
           <StyledMain>
