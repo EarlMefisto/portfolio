@@ -57,11 +57,9 @@ export const PostsWrapper = styled.div`
 `
 
 export const PostsImage = styled.img`
+  max-width: 300px;
   width: 100%;
-  height: 100%;
+  height: 300px;
   object-fit: cover;
-  display: block;
-
-  @media ${thems.media.laptop} {
-  }
+  object-position: bottom center;
 `

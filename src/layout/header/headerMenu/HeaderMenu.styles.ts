@@ -3,7 +3,8 @@ import { thems } from '../../../styles/Thems'
 import { Link } from 'react-scroll'
 
 export const StyledHeaderMenu = styled.nav`
-  @media screen and (max-width: 1190px) {
+  @media screen and (max-width: 1280px) {
+    display: none;
   }
 `
 export const List = styled.ul``

@@ -1,5 +1,5 @@
 import { Icon } from '../../../shared/components/Icon'
-import { ChangeThemeMode, DayModeButton } from './ThemeMode.styles'
+import { ChangeThemeMode } from './ThemeMode.styles'
 
 export const ThemeMode = () => {
   return (

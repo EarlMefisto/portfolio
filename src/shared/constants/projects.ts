@@ -1,35 +1,24 @@
-import postImage1 from '@/assets/img/0cbd17e4381497547009ce81acc4eee3.webp'
-import postImage2 from '@/assets/img/dnf.webp'
-import postImage4 from '@/assets/img/roulet.webp'
-import postImage5 from '@/assets/img/stone.webp'
+import postImage1 from '@/assets/img/dnf.webp'
+import postImage2 from '@/assets/img/roulet.webp'
+import postImage3 from '@/assets/img/stone.webp'
 
 export const PROJECTS = [
   {
-    href: 'https://earlmefisto.github.io/desert/',
-    projectId: 'desert',
-    postImageId: postImage1,
-    type: 'landing',
-  },
-  {
     href: 'https://earlmefisto.github.io/DNF/',
     projectId: 'todolist',
-    postImageId: postImage2,
+    postImageId: postImage1,
     type: 'app',
   },
-  //   {
-  //     projectId: 'inctagram',
-  //     postImageId: postImage3,
-  //     type: 'app',
-  //   },
   {
+    href: 'https://earlmefisto.github.io/grandcasino/',
     projectId: 'roulet',
-    postImageId: postImage4,
+    postImageId: postImage2,
     type: 'landing',
   },
   {
     href: 'https://granitvechnosti.ru/',
     projectId: 'granite',
-    postImageId: postImage5,
+    postImageId: postImage3,
     type: 'web',
   },
 ]
