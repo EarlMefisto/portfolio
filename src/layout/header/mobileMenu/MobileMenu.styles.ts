@@ -7,13 +7,15 @@ export const StyledMobileMenu = styled.nav`
     display: none;
   }
 `
+
+
 export const List = styled.ul<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 9999999;
+  z-index: 99999;
 
   background-color: ${thems.colors.secondaryBg};
   display: none;
@@ -26,6 +28,7 @@ export const List = styled.ul<{ isOpen: boolean }>`
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: rgba(21, 31, 52, 0.91);
     `}
 `
 
@@ -53,11 +56,11 @@ export const MenuLink = styled(Link)`
 `
 export const BurgerButton = styled.button<{ isOpen: boolean }>`
   position: fixed;
-  top: -100px;
-  right: -100px;
+  top: -125px;
+  right: -110px;
   width: 200px;
   height: 200px;
-  z-index: 99999999;
+  z-index: 999999;
   background-color: transparent;
 
   span {

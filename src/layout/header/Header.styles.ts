@@ -11,16 +11,11 @@ export const StyledHeader = styled.header`
   z-index: 99999;
 
   @media ${thems.media.smallDisplay} {
-    position: fixed;
     top: 0;
     right: 50px;
   }
 
-  @media ${thems.media.laptop} {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  @media screen and (max-width: 1280px) {
+    padding-top: 80px;
   }
 `
