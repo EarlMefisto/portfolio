@@ -9,6 +9,8 @@ export const GlobalStyled = createGlobalStyle`
     padding: 0 auto;
 }
 
+
+
 body {
   margin: 0;
   font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
@@ -18,6 +20,27 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: ${thems.colors.text};
   background-color: ${thems.colors.primaryBg};
+
+  @media screen and (max-width: 1280px) {
+    margin-top: 50px;
+  }
+}
+
+[data-theme='light'] {
+    background-color: ${thems.colors.primaryBgLightTheme};
+    color: ${thems.colors.textLightTheme};
+
+    h2 {
+        color: ${thems.colors.titleLightTheme}
+    }
+
+    a {
+        color: ${thems.colors.textLightTheme};
+    }
+
+    button {
+        color: ${thems.colors.titleLightTheme};
+    }
 }
 
 a {
@@ -34,6 +57,8 @@ ul {
     list-style: none;
     padding: 0;
 }
+
+
 
 button {
     background-color: unset;

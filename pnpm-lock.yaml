@@ -44,6 +44,9 @@ importers:
       tsparticles:
         specifier: ^3.9.1
         version: 3.9.1
+      use-local-storage:
+        specifier: ^3.0.0
+        version: 3.0.0(react@19.2.3)
       web-vitals:
         specifier: ^5.1.0
         version: 5.1.0
@@ -2808,6 +2811,11 @@ packages:
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+
+  use-local-storage@3.0.0:
+    resolution: {integrity: sha512-wlPNnBCG3ULIJMr5A+dvWqLiPWCfsN1Kwijq+sAhT5yV4ex0u6XmZuNwP+RerIOfzBuz1pwSZuzhZMiluGQHfQ==}
+    peerDependencies:
+      react: '>=16.8.1'
 
   util@0.10.4:
     resolution: {integrity: sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A==}
@@ -6045,6 +6053,10 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+
+  use-local-storage@3.0.0(react@19.2.3):
+    dependencies:
+      react: 19.2.3
 
   util@0.10.4:
     dependencies:

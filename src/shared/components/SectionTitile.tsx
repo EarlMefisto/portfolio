@@ -11,7 +11,7 @@ export const SectionTitle = styled.h2`
   display: flex;
   justify-content: center;
 
-  color: #5d478b;
+  color: ${thems.colors.title};
 
   margin: 50px 20px;
 

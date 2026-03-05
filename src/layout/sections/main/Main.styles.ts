@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 import { thems } from '../../../styles/Thems'
 
-export const GlobalStyledMain = styled.section``
+export const GlobalStyledMain = styled.section`
+  @media ${thems.media.laptop} {
+    margin-top: 30px;
+  }
+`
 
 export const StyledMain = styled.div`
   display: flex;
