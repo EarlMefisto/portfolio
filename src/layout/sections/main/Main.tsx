@@ -1,4 +1,3 @@
-import photo from '../../../assets/img/IMG_5490.png'
 import { Container } from '../../../shared/components/Container'
 import { FlexWrapper } from '../../../shared/components/FlexWrapper'
 import { Button } from '../../../shared/components/Button'
@@ -52,7 +51,12 @@ export const Main = () => {
             </ButtonWrapper>
           </StyledMain>
           <PhotoWrapper>
-            <Photo src={photo} alt="My photo" />
+            <Photo
+              src={`${import.meta.env.BASE_URL}IMG_5490.webp`}
+              alt="My photo"
+              loading="lazy"
+              decoding="async"
+            />
           </PhotoWrapper>
         </FlexWrapper>
       </Container>

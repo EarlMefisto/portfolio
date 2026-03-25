@@ -5,11 +5,10 @@ export const GlobalStyled = createGlobalStyle`
 *,
 *::before,
 *::after {
-    margin: 0 auto;
-    padding: 0 auto;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
-
 
 body {
   margin: 0;
@@ -27,49 +26,47 @@ body {
 }
 
 [data-theme='light'] {
-    background-color: ${thems.colors.primaryBgLightTheme};
+  background-color: ${thems.colors.primaryBgLightTheme};
+  color: ${thems.colors.textLightTheme};
+
+  h2 {
+    color: ${thems.colors.titleLightTheme}
+  }
+
+  a {
     color: ${thems.colors.textLightTheme};
+  }
 
-    h2 {
-        color: ${thems.colors.titleLightTheme}
-    }
-
-    a {
-        color: ${thems.colors.textLightTheme};
-    }
-
-    button {
-        color: ${thems.colors.titleLightTheme};
-    }
+  button {
+    color: ${thems.colors.titleLightTheme};
+  }
 }
 
 a {
-    cursor: pointer;
-    text-decoration: none;
-    color: ${thems.colors.text};
+  cursor: pointer;
+  text-decoration: none;
+  color: ${thems.colors.text};
 }
 
 a:hover {
-    color: ${thems.colors.accent};
+  color: ${thems.colors.accent};
 }
 
 ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
-
-
 button {
-    background-color: unset;
-    border: transparent;
-    border-radius: 5px;
-    background-color: ${thems.colors.accent};
-    cursor: pointer;
-    color: ${thems.colors.title};
+  background-color: unset;
+  border: transparent;
+  border-radius: 5px;
+  background-color: ${thems.colors.accent};
+  cursor: pointer;
+  color: ${thems.colors.title};
 }
 
 section {
-    margin: 10px;
+  margin: 10px;
 }
 `

@@ -1,18 +1,15 @@
 import ReactDOM from 'react-dom/client'
 import reportWebVitals from './reportWebVitals'
 import { GlobalStyled } from './styles/GlobalStyled'
-import { BrowserRouter } from 'react-router-dom'
 import App from './app/App'
 import { StrictMode } from 'react'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
-  <BrowserRouter>
-    <StrictMode>
-      <GlobalStyled />
-      <App />
-    </StrictMode>
-  </BrowserRouter>
+  <StrictMode>
+    <GlobalStyled />
+    <App />
+  </StrictMode>
 )
 
 // If you want to start measuring performance in your app, pass a function

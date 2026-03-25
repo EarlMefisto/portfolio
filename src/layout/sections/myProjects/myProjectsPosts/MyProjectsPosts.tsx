@@ -1,5 +1,5 @@
 import { Button } from '../../../../shared/components/Button'
-import { PostsImage, PostsWrapper } from './MyProjectsPosts.styles'
+import { PostsImage, PostsPlaceholder, PostsWrapper } from './MyProjectsPosts.styles'
 
 type PostsPropsType = {
   src?: string
@@ -8,7 +8,11 @@ type PostsPropsType = {
 export const MyProjectsPosts = (props: PostsPropsType) => {
   return (
     <PostsWrapper>
-      <PostsImage src={props.src} alt="image" />
+      {props.src ? (
+        <PostsImage src={props.src} alt="project preview" loading="lazy" />
+      ) : (
+        <PostsPlaceholder aria-hidden />
+      )}
       <Button>push me</Button>
     </PostsWrapper>
   )

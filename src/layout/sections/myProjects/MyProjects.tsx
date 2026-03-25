@@ -32,10 +32,10 @@ export const MyProjects = () => {
         </FlexWrapper>
         <FlexWrapper>
           <List>
-            {filteredProjects.map(({ href, projectId, postImageId }) => (
+            {filteredProjects.map(({ href, projectId }) => (
               <Item key={projectId}>
                 <Link href={href} target="_blank" rel="noopener noreferrer">
-                  <MyProjectsPosts src={postImageId} />
+                  <MyProjectsPosts />
                 </Link>
               </Item>
             ))}

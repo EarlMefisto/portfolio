@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Particles, { initParticlesEngine } from '@tsparticles/react'
 import { type Container, type ISourceOptions } from '@tsparticles/engine'
-import { loadFull } from 'tsparticles'
+import { loadSlim } from '@tsparticles/slim'
 
 export const Particle = () => {
   const [init, setInit] = useState(false)
@@ -12,7 +12,7 @@ export const Particle = () => {
     const initializeParticles = async () => {
       try {
         await initParticlesEngine(async engine => {
-          await loadFull(engine)
+          await loadSlim(engine)
         })
 
         if (isMounted) {
@@ -31,7 +31,7 @@ export const Particle = () => {
   }, [])
 
   const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log('Particles container:', container)
+    void container
   }
 
   const options: ISourceOptions = useMemo(

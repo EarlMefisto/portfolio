@@ -63,3 +63,10 @@ export const PostsImage = styled.img`
   object-fit: cover;
   object-position: bottom center;
 `
+
+export const PostsPlaceholder = styled.div`
+  max-width: 300px;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(135deg, rgba(0, 110, 255, 0.25), rgba(201, 215, 224, 0.15));
+`
